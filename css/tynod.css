@@ -1,0 +1,115 @@
+.botonRegistro
+{
+	background-color: #9999ff;
+	transition-duration: 0.5s;
+
+}
+
+.botonRegistro:active
+{
+	background-color: #4d4dff;
+}
+
+.centro
+{
+	width: 1000px;
+	max-width: 100%;
+	margin: auto;
+	color: #e0ebeb;
+	padding:  15px 15px 20px 15px;
+}
+
+#inicio
+{
+	background-color: #00b38f;
+	overflow: hidden;
+	padding: 10px 10px 30px 10px ;
+	margin: auto !important;
+}
+
+
+body
+{
+	font-family: 'Raleway', 'Arial';
+}
+
+
+.ingreso
+{
+	color: #c1d7d7;
+	transition-duration: 0.5s;
+	text-decoration: none;
+}
+
+.ingreso:hover
+{
+	color: #eff5f5;
+	text-decoration: none !important;
+}
+
+
+.ingreso:active
+{
+	color: #ffffff;
+}
+
+#poster1
+{
+	width:  500px;
+	max-width: 100%;
+	display: inline-block;
+	margin-bottom: 60px;
+}
+
+#well
+{
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0px 5px 20px #888888;
+	color: black;
+	display: inline-block;
+	padding: 15px;
+	top: -20px;
+}
+
+#well-regis
+{
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0px 5px 20px #888888;
+	color: black;
+	display: inline-block;
+	padding: 15px 25px 20px 25px;
+	width: 450px;
+	max-width: 100%;
+	float: right;
+	margin-top: -34px;
+}
+
+#regis
+{
+	margin-left: 30px;
+	margin-right: 30px;
+	text-align: center;
+	color: #00b38f;
+}
+
+.linkeroni
+{
+	color: #00b38f;
+	transition-duration: 0.5s;
+	padding: 10px;
+}
+
+.linkeroni:active
+{
+	color: #00b38f;
+}
+
+.linkeroni:hover
+{
+	color: white;
+	border-radius: 20px;
+	background-color: #00b38f;
+	text-decoration: none;
+}
