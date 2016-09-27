@@ -18,7 +18,7 @@
 					<div id = "poster1"><h1>Anuncia tus servicios totalmente gratis. </h1></div> 
 
 					<div id = "well-regis">
-							<div id = "regis"><h3><a href="#" class = "linkeroni"> Regs&iacute;trate Gratis </a></h3></div>
+							<div id = "regis"><h3><a href="#" class = "linkeroni"> Reg&iacute;strate Gratis </a></h3></div>
 
 							<?php espacios(2); ?>
 
@@ -26,6 +26,16 @@
 					</div>
 
 
+				</div>
+			</div>
+			<div id = "meem">
+				<div class = "centro">
+					<div class = "titulo2">&#191; Por qu&eacute; usar TyNod? </div>
+					<div class = "well-perks">
+					<center>
+						<i class = "fa fa-smile-o fa-3x"></i>
+					</center>
+					</div>
 				</div>
 			</div>
 		</div>
