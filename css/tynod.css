@@ -5,12 +5,26 @@
 
 }
 
+#inicio
+{
+	background-color: #00b38f;
+	overflow: hidden;
+	padding: 10px 10px 60px 10px ;
+	margin: auto !important;
+}
 
-
-#meem
+#usarTyn
 {
 	background-color: #66b5ff;
 	width: 100%;
+	padding-bottom: 100px;
+}
+
+#ques
+{
+	background-color: #003366;
+	width: 100%;
+	padding-bottom: 50px;
 }
 
 .botonRegistro:active
@@ -25,14 +39,6 @@
 	margin: auto;
 	color: #e0ebeb;
 	padding:  15px 15px 20px 15px;
-}
-
-#inicio
-{
-	background-color: #00b38f;
-	overflow: hidden;
-	padding: 10px 10px 30px 10px ;
-	margin: auto !important;
 }
 
 
@@ -74,7 +80,7 @@ body
 	margin-bottom: 60px;
 }
 
-#well-perks
+.well-perks
 {
 	background-color: white;
 	border-radius: 20px;
@@ -83,7 +89,9 @@ body
 	display: inline-block;
 	padding: 15px;
 	margin: 30px;
-	width: 300px;
+	width: 280px;
+	height: auto;
+	margin: 15px 18px 15px 18px;
 	max-width: 100%;
 }
 
@@ -135,4 +143,10 @@ body
 	font-size: 65px;
 	color: white;
 	text-align: center;
+	padding: 10px 20px 30px 20px;
+}
+
+.ico
+{
+	padding: 0px 7px 15px 7px;
 }
