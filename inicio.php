@@ -42,7 +42,7 @@
 						<i class = "fa fa-smile-o fa-3x ico" style = "color: #80ff80;"></i> <h5> La satisfacci&oacute;n de los usuarios es una prioridad enorme </h5>
 					</div>
 					<div class = "well-perks">
-						<i class = "fa fa-bolt fa-3x ico" style = "color: #ffff66;"></i> <h5> Ecnontrar&aacute;s los servicios que necesitas r&aacute;pidamente</h5>
+						<i class = "fa fa-bolt fa-3x ico" style = "color: #ffff66;"></i> <h5> Encontrar&aacute;s los servicios que necesitas r&aacute;pidamente</h5>
 					</div>
 					<div class = "well-perks">
 						<i class = "fa fa-globe fa-3x ico" style = "color: #0047b3;"></i> <h5> Encuentra siempre lo que necesitas sin importar d&oacute;nde est&eacute;s </h5>
