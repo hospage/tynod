@@ -15,16 +15,19 @@
 				<div class = "centro">
 					<div><h3 style = "float: left; position: absolute;"> <i class = "fa fa-wrench"></i>  TyNod </h3> <a href="#" style = "float: right;" class = "ingreso"> INGRESA </a></div>
 					<?php espacios(7); ?>
-					<div id = "poster1"><h1>Anuncia tus servicios totalmente gratis. </h1></div>
+					<div id = "poster1"><h1>Ofrece tus servicios totalmente gratis. </h1></div>
 
 					<div id = "well-regis">
-							<div id = "regis"><h3><a href="#" class = "linkeroni"> Reg&iacute;strate Gratis </a></h3></div>
+							<div id = "regis"><h3><a href="Registro.php" class = "linkeroni"> Reg&iacute;strate Gratis </a></h3></div>
 
 							<?php espacios(2); ?>
 
-							<h5> TyNod cuenta con una opci&oacute;n totalmente gratis para todo tipo de usuarios, ya seas prestador de servicios/empresa o un usuario</h5>
+							<h5> TyNod cuenta con una opci&oacute;n totalmente gratis para todo tipo de personas, ya sea prestador de servicios/empresa o un usuario.</h5>
 					</div>
-
+					
+					<div> 
+						<img src="logos/LogoGorila.png" class = "gorila">
+					</div>
 
 				</div>
 			</div>
@@ -48,10 +51,15 @@
 						<i class = "fa fa-globe fa-3x ico" style = "color: #0047b3;"></i> <h5> Encuentra siempre lo que necesitas sin importar d&oacute;nde est&eacute;s </h5>
 					</div>
 					</center>
+					
+					<div> 
+						<img src="logos/LogoLlave.png" class = "llave">
+					</div>
+					
 				</div>
 				
 			</div>
-			<div style = "background-color: #66b5ff;"><center> Hecha con <i class = "fa fa-heart" style = "color:red;"></i></center></div>
+			<div style = "background-color: #66b5ff; margin-top: -55px;"><center> Hecha con <i class = "fa fa-heart" style = "color:red;"></i></center></div>
 		</div>
 		<?php
 
