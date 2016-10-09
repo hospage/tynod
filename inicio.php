@@ -12,6 +12,7 @@
 		<script src = "js/jquery-3.1.0.js"></script>
 		<div id = "container-fluid">
 			<div id = "inicio">
+			<div id = "registro"></div>
 				<div class = "centro">
 					<div><h3 style = "float: left; position: absolute;"> <i class = "fa fa-wrench"></i>  TyNod </h3> <a href="#" style = "float: right;" class = "ingreso"> INGRESA </a></div>
 					<?php espacios(7); ?>
@@ -74,5 +75,13 @@
 			}
 
 		?>
+		<script type="text/javascript">
+			$('#regis').on('click', function(){
+				$('.linkeroni').blur();
+				var html = '<div class = "divRegistro"> HEY </div>';
+				$('#registro').html(html);
+
+			});
+		</script>
 	</body>
 </html>

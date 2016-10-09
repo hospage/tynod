@@ -168,3 +168,18 @@ body
 	margin-top: 70px;
 	margin-bottom: 20px;
 }
+
+.divRegistro
+{
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0px 600px 600px #888888;
+	color: black;
+	margin: auto;
+	padding: 35px;
+	width: 450px;
+	max-width: 100%;
+	position: relative;
+	z-index: 30;
+	margin-top: -50%;
+}
