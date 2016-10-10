@@ -104,6 +104,11 @@
 		        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
 		 
 		        e.preventDefault();
+
+		        var html = '<h3>Eres un:</h3> <center>		         <div class = "trabajador"> <a href = "#" class = "rmLink"><h4> Trabajador <i class = "fa fa-suitcase"></i> </h4> </a> </div> 		         <div class = "usuario"> <a href = "#" class = "rmLink"><h4> Usuario <i class = "fa fa-user"></i> </h4> </a> </div> 		         </center>';
+
+		        $('#divEscoge').delay(1).queue(function(n){ $('#divEscoge').html(html); n();});
+		        
 		    });
 
 
