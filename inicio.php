@@ -8,6 +8,21 @@
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
 	</head>
 	<body>
+ 
+		<div class="popup" data-popup="popup-1">
+		    <div class="popup-inner">
+		    <div id = "divEscoge">
+
+		         <h3>Eres un:</h3>
+		         <center>
+		         <div class = "trabajador"> <a href = "#" class = "rmLink"><h4> Trabajador <i class = "fa fa-suitcase"></i> </h4> </a> </div> 
+		         <div class = "usuario"> <a href = "#" class = "rmLink"><h4> Usuario <i class = "fa fa-suitcase"></i> </h4> </a> </div> 
+		         </center>
+		    </div>
+		    <div id = "divRegistro"> </div>
+		        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+		    </div>
+		</div>
 
 		<script src = "js/jquery-3.1.0.js"></script>
 		<div id = "container-fluid">
@@ -19,11 +34,11 @@
 					<div id = "poster1"><h1>Ofrece tus servicios totalmente gratis. </h1></div>
 
 					<div id = "well-regis">
-							<div id = "regis"><h3><a href="Registro.php" class = "linkeroni"> Reg&iacute;strate Gratis </a></h3></div>
+						<div id = "regis"><h3><a href="#" class = "linkeroni" data-popup-open="popup-1"> Reg&iacute;strate Gratis </a></h3></div>
 
-							<?php espacios(2); ?>
+						<?php espacios(2); ?>
 
-							<h5> TyNod cuenta con una opci&oacute;n totalmente gratis para todo tipo de personas, ya sea prestador de servicios/empresa o un usuario.</h5>
+						<h5> TyNod cuenta con una opci&oacute;n totalmente gratis para todo tipo de personas, ya sea prestador de servicios/empresa o un usuario.</h5>
 					</div>
 					
 					<div> 
@@ -76,10 +91,33 @@
 
 		?>
 		<script type="text/javascript">
+			 $('[data-popup-open]').on('click', function(e)  {
+		        var targeted_popup_class = jQuery(this).attr('data-popup-open');
+		        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+		 
+		        e.preventDefault();
+		    });
+		 
+		    //----- CLOSE
+		    $('[data-popup-close]').on('click', function(e)  {
+		        var targeted_popup_class = jQuery(this).attr('data-popup-close');
+		        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+		 
+		        e.preventDefault();
+		    });
+
+
 			$('#regis').on('click', function(){
 				$('.linkeroni').blur();
 				var html = '<div class = "divRegistro"> HEY </div>';
-				$('#registro').html(html);
+
+			});
+
+			$('.usuario').on('click', function(){
+				
+				var html = '<form action = "UsuarioBaseDeDatos.php" method = "post">Nombre: <input type = "text" name = "Nombre"><br><br>Numero Telefonico: <input type = "text" name = "Numero" placeholder="Opcional"><br><br>Su edad: <input type = "text" name = "Edad"><br><br>Correo: <input type = "text" name = "Correo"><br><br>				Fecha de Nacimiento: <input type="date" name="bday" max="2016-12-31"><br><br><button type = "submit" class = "btnGeneral">Registrarse</button></form>';
+				$('#divEscoge').fadeOut(500).delay(1).queue(function(n){ $('#divEscoge').html(html); n();}).fadeIn(500);
+				//$('#divRegistro').html(html);
 
 			});
 		</script>

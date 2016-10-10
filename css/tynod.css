@@ -1,8 +1,19 @@
-.botonRegistro
+.btnGeneral
 {
-	background-color: #9999ff;
+	background-color: #00b38f;
+	color: white;
+	border: 2px solid white;
+	border-radius: 10px;
 	transition-duration: 0.5s;
+	font-size: 16px;
+	padding: 15px;
+}
 
+.btnGeneral:hover
+{
+	color: #00b38f;
+	background-color: white;
+	border-color: #00b38f;
 }
 
 #inicio
@@ -169,17 +180,120 @@ body
 	margin-bottom: 20px;
 }
 
-.divRegistro
+/* Outer */
+.popup {
+    width:100%;
+    height:100%;
+    display:none;
+    position:fixed;
+    top:0px;
+    left:0px;
+    background:rgba(0,0,0,0.75);
+}
+ 
+/* Codigo obtenido de  http://inspirationalpixels.com/tutorials/custom-popup-modal */
+
+.popup-inner {
+    max-width:700px;
+    width:90%;
+    padding:40px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%);
+    box-shadow:0px 2px 6px rgba(0,0,0,1);
+    border-radius:3px;
+    background:#fff;
+}
+ 
+.popup-close {
+    width:30px;
+    height:30px;
+    padding-top:4px;
+    display:inline-block;
+    position:absolute;
+    top:0px;
+    right:0px;
+    transition:ease 0.25s all;
+    -webkit-transform:translate(50%, -50%);
+    transform:translate(50%, -50%);
+    border-radius:1000px;
+    background:rgba(0,0,0,0.8);
+    font-family:Arial, Sans-Serif;
+    font-size:20px;
+    text-align:center;
+    line-height:100%;
+    color:#fff;
+}
+ 
+.popup-close:hover {
+    -webkit-transform:translate(50%, -50%) rotate(180deg);
+    transform:translate(50%, -50%) rotate(180deg);
+    background:rgba(0,0,0,1);
+    text-decoration:none;
+}
+
+/* Fin de codigo recopliado */
+
+.trabajador
 {
-	background-color: white;
-	border-radius: 20px;
-	box-shadow: 0px 600px 600px #888888;
-	color: black;
-	margin: auto;
-	padding: 35px;
-	width: 450px;
 	max-width: 100%;
-	position: relative;
-	z-index: 30;
-	margin-top: -50%;
+	width: 400px;
+	height: auto;
+	padding: 20px 15px 15px 15px;
+	margin: 50px 10px 50px 50px;
+	border-radius: 10px;
+	border: 2px solid #ffd11a;
+	color: #ffd11a;
+	background-color: white;
+	transition-duration: 0.5s;
+	-webkit-transition-duration: 0.5s;
+	text-align: center;
+}
+
+.trabajador:hover
+{
+	color: white;
+	background-color: #ffd11a;
+	border-color: white;
+}
+
+.usuario
+{
+	max-width: 100%;
+	width: 400px;
+	height: auto;
+	padding: 20px 15px 15px 15px;
+	margin: 50px 10px 50px 50px;
+	border-radius: 10px;
+	border: 2px solid #00b38f;
+	color: #00b38f;
+	background-color: white;
+	transition-duration: 0.5s;
+	-webkit-transition-duration: 0.5s;
+	text-align: center;
+}
+
+.usuario:hover
+{
+	color: white;
+	background-color: #00b38f;
+	border-color: white;
+}
+
+.rmLink
+{
+	color: inherit !important;
+}
+
+.rmLink:hover
+{
+	text-decoration: none;
+	color: inherit !important;
+}
+
+.rmLink:active
+{
+	color: inherit !important;
 }
