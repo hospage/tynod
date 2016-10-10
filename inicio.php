@@ -29,7 +29,7 @@
 			<div id = "inicio">
 			<div id = "registro"></div>
 				<div class = "centro">
-					<div><h3 style = "float: left; position: absolute;"> <i class = "fa fa-wrench"></i>  TyNod </h3> <a href="#" style = "float: right;" class = "ingreso"> INGRESA </a></div>
+					<div><h3 style = "float: left; position: absolute;"> <img src="logos/LogoLlave.png" style = "width: 40px;">  TyNod </h3> <a href="#" style = "float: right;" class = "ingreso"> INGRESA </a></div>
 					<?php espacios(7); ?>
 					<div id = "poster1"><h1>Ofrece tus servicios totalmente gratis. </h1></div>
 
