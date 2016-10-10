@@ -16,7 +16,7 @@
 		         <h3>Eres un:</h3>
 		         <center>
 		         <div class = "trabajador"> <a href = "#" class = "rmLink"><h4> Trabajador <i class = "fa fa-suitcase"></i> </h4> </a> </div> 
-		         <div class = "usuario"> <a href = "#" class = "rmLink"><h4> Usuario <i class = "fa fa-suitcase"></i> </h4> </a> </div> 
+		         <div class = "usuario"> <a href = "#" class = "rmLink"><h4> Usuario <i class = "fa fa-user"></i> </h4> </a> </div> 
 		         </center>
 		    </div>
 		    <div id = "divRegistro"> </div>
