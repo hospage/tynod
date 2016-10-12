@@ -181,16 +181,14 @@
 					if (isset($_REQUEST['btnRegistro']))
 					{
 						
-						$Nombre = $_POST['Nombre'];
-						$Numero = $_POST['Numero'];
-						$Correo = $_POST['Correo'];
-						$Contrasena = $_POST['Contrasena'];
-						$Contrasena2 = $_POST['Contrasena2'];
-						$Nacimiento = $_POST['bday'];
-						$Pass = "Default";
+						$Nombre = $_REQUEST['Nombre'];
+						$Numero = $_REQUEST['Numero'];
+						$Correo = $_REQUEST['Correo'];
+						$Nacimiento = $_REQUEST['bday'];
+						$Edad = $_REQUEST['Edad'];
+						$Pass = $_REQUEST['Contrasena'];
 						$Region = "America";
 						$Pais = "Mexico";
-						
 						$Conexion = mysqli_connect("localhost","root","","tynod");
 						
 						$ID1 = mysqli_query($Conexion, "select count(ID) as ID from usuarios");
@@ -215,7 +213,6 @@
 						mysqli_close($Conexion);
 						
 					}
-					
 					
 				
 				?>
