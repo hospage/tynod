@@ -2,7 +2,7 @@
     <head>  </head>
 	    <body>
 		     
-			<form action = "UsuarioBaseDeDatos.php" method = "post">
+			<form action = "UsuarioRegistro.php" method = "post">
 			
 				Nombre:
 				<input type = "text" name = "Nombre"><br><br>

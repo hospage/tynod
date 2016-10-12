@@ -194,8 +194,8 @@ body
 /* Codigo obtenido de  http://inspirationalpixels.com/tutorials/custom-popup-modal */
 
 .popup-inner {
-    max-width:700px;
-    width:90%;
+    max-width:100%;
+    width:600px;
     padding:40px;
     position:absolute;
     top:50%;

@@ -5,20 +5,27 @@
 			<?php
 			
 				$Nombre = $_POST['Nombre'];
-				$Apellido = $_POST['Apellido'];
 				$Numero = $_POST['Numero'];
-				$Edad = $_POST['Edad'];
 				$Correo = $_POST['Correo'];
-				$Contrasena = $_POST['Contrasena'];
-				$Nacimiento = $_POST['Nacimiento'];
-				
+				$Nacimiento = $_POST['bday'];
+				$Pass = "Default";
+				$Region = "America";
+				$Pais = "Mexico";
 				$Conexion = mysqli_connect("localhost","root","","tynod");
 				
-				echo $Nombre;
+				$ID1 = mysqli_query($Conexion, "select count(ID) as ID from usuarios");
+					
+				$NumeroID = mysqli_fetch_array($ID1);
 				
-				//mysqli_query($Conexion, "insert into usuarios (Nombre, Apellido, Edad, Correo, Contrasena, Nacimiento) values ($Nombre, $Apellidos, $Edad, $Correo, $Contrasena, $Nacimiento)") or die ("Hubo algun problema en el formulario");
-				//echo "Registro exitoso";
+				$ID = $NumeroID['ID'] + 1;
 				
+				if(!mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais')"))
+				{
+					mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais')");
+				}
+				
+				echo "Registro exitoso";
+
 				mysqli_close($Conexion);
 			?>
 		
