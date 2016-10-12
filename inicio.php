@@ -25,16 +25,15 @@
 				<input type = "text" name = "Nombre" class = "inputTextPopup"><br><br>
 				Numero Telefonico:
 				<input type = "text" name = "Numero" placeholder="Opcional" class = "inputTextPopup"><br><br>
-				Su edad:
-				<input type = "text" name = "Edad" class = "inputTextPopup"><br><br>
 				Correo:
 				<input type = "text" name = "Correo" class = "inputTextPopup"><br><br>
 				Contrase&ntilde;a:
 				<input type = "password" name = "Contrasena"  class = "inputTextPopup"><br><br>
 				Confirmar Contrase&ntilde;a:
-				<input type = "password" name = "Contrasena1"  class = "inputTextPopup" ><br><br>
+				<input type = "password" name = "Contrasena2"  class = "inputTextPopup"><br><br>
 				Fecha de Nacimiento:
                 <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup"><br><br>
+				
 				<button type = "input" class = "btnGeneral" name = "btnRegistro"> Reg&iacute;strate </button>
 				</form>
 			</div>
@@ -132,6 +131,8 @@
 		        //$('#divEscoge').delay(1).queue(function(n){ $('#divEscoge').html(html); n();});
 		        $('#divEscoge').show();
 				$('#divRegistro').hide();
+				
+				$('.inputTextPopup').val("");
 		    });
 
 
@@ -156,14 +157,16 @@
 					if (isset($_REQUEST['btnRegistro']))
 					{
 						
-						$Nombre = $_REQUEST['Nombre'];
-						$Numero = $_REQUEST['Numero'];
-						$Correo = $_REQUEST['Correo'];
-						$Nacimiento = $_REQUEST['bday'];
-						$Edad = $_REQUEST['Edad'];
-						$Pass = $_REQUEST['Contrasena'];
+						$Nombre = $_POST['Nombre'];
+						$Numero = $_POST['Numero'];
+						$Correo = $_POST['Correo'];
+						$Contrasena = $_POST['Contrasena'];
+						$Contrasena2 = $_POST['Contrasena2'];
+						$Nacimiento = $_POST['bday'];
+						$Pass = "Default";
 						$Region = "America";
 						$Pais = "Mexico";
+						
 						$Conexion = mysqli_connect("localhost","root","","tynod");
 						
 						$ID1 = mysqli_query($Conexion, "select count(ID) as ID from usuarios");
