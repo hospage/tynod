@@ -306,3 +306,11 @@ body
 {
 	color: inherit !important;
 }
+
+.dot
+{
+	display: inline-block;
+	margin-left: 10px;
+	width: 30%;
+	position: static;
+}

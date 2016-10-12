@@ -28,9 +28,13 @@
 				Correo:
 				<input type = "text" name = "Correo" class = "inputTextPopup"><br><br>
 				Contrase&ntilde;a:
-				<input type = "password" name = "Contrasena"  class = "inputTextPopup"><br><br>
+				<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
 				Confirmar Contrase&ntilde;a:
+<<<<<<< Updated upstream
 				<input type = "password" name = "Contrasena2"  class = "inputTextPopup"><br><br>
+=======
+				<input type = "password" name = "Contrasena2"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"> <i class = "fa fa-circle"></i> </div> <br><br>
+>>>>>>> Stashed changes
 				Fecha de Nacimiento:
                 <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup"><br><br>
 				
@@ -111,7 +115,9 @@
 		
 			$(document).ready(function(){
 				$('#divRegistro').hide();
+				$('.dot').hide();
 			});
+
 			 $('[data-popup-open]').on('click', function(e)  {
 		        var targeted_popup_class = jQuery(this).attr('data-popup-open');
 		        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
@@ -126,9 +132,6 @@
 		 
 		        e.preventDefault();
 
-		        //var html = '<h3>Eres un:</h3> <center>		         <div class = "trabajador"> <a href = "#" class = "rmLink"><h4> Trabajador <i class = "fa fa-suitcase"></i> </h4> </a> </div> 		         <div class = "usuario"> <a href = "#" class = "rmLink"><h4> Usuario <i class = "fa fa-user"></i> </h4> </a> </div> 		         </center>';
-
-		        //$('#divEscoge').delay(1).queue(function(n){ $('#divEscoge').html(html); n();});
 		        $('#divEscoge').show();
 				$('#divRegistro').hide();
 				
@@ -143,13 +146,34 @@
 			});
 
 			$('.usuario').on('click', function(){
-				
-				//var html = '<form action = "php/UsuarioRegistro.php" method = "post">Nombre: <input class = "inputTextPopup" type = "text" name = "Nombre"><br><br>Correo: <input class = "inputTextPopup" type = "text" name = "Correo"><br><br>Numero Telefonico: <input class = "inputTextPopup" type = "number" name = "Numero" placeholder="Opcional"><br><br>Fecha de Nacimiento: <input type="date" name="bday" max="2016-12-31"><br><br><button type = "submit" class = "btnGeneral">Registrarse</button></form>';
-				//$('#divEscoge').fadeOut(500).delay(1).queue(function(n){ $('#divEscoge').html(html); n();}).fadeIn(500);
-				//$('#divRegistro').html(html);
 				$('#divEscoge').hide();
 				$('#divRegistro').fadeIn(500);
 			});
+
+			$('#txtContra1').keypress(function(){
+
+				setTimeout(function() {
+                   var contra = $('#txtContra1').val();
+                   checaValor(contra);
+               }, 0);
+
+			});
+
+			function checaValor(contrasena)
+			{
+				var html = '';
+				if(contrasena.length <= 7)
+				{
+					html += '<i class = "fa fa-circle" style = "color: #ff3333;"></i> La contrase&ntilde;a debe de tener 8 caracteres o mas';
+				}
+				else
+				{
+					html += '<i class = "fa fa-circle" style = "color: #33cc33;"></i> Perfecta!';
+				}
+
+				$('#dot1').html(html);
+				$('#dot1').show();
+			}
 		</script>
 	</body>
 				<?php
