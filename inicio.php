@@ -20,7 +20,7 @@
 		         </center>
 		    </div>
 		    <div id = "divRegistro"> 
-				<form action = "UsuarioBaseDeDatos.php" method = "post">
+				<form action = "inicio.php" method = "post">
 				Nombre:
 				<input type = "text" name = "Nombre" class = "inputTextPopup"><br><br>
 				Numero Telefonico:
@@ -32,10 +32,10 @@
 				Contrase&ntilde;a:
 				<input type = "password" name = "Contrasena"  class = "inputTextPopup"><br><br>
 				Confirmar Contrase&ntilde;a:
-				<input type = "password" name = "Contrasena"  class = "inputTextPopup"><br><br>
+				<input type = "password" name = "Contrasena1"  class = "inputTextPopup" ><br><br>
 				Fecha de Nacimiento:
                 <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup"><br><br>
-				<button type = "input" class = "btnGeneral"> Reg&iacute;strate </button>
+				<button type = "input" class = "btnGeneral" name = "btnRegistro"> Reg&iacute;strate </button>
 				</form>
 			</div>
 		        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
@@ -151,4 +151,46 @@
 			});
 		</script>
 	</body>
+				<?php
+					
+					if (isset($_REQUEST['btnRegistro']))
+					{
+						
+						$Nombre = $_REQUEST['Nombre'];
+						$Numero = $_REQUEST['Numero'];
+						$Correo = $_REQUEST['Correo'];
+						$Nacimiento = $_REQUEST['bday'];
+						$Edad = $_REQUEST['Edad'];
+						$Pass = $_REQUEST['Contrasena'];
+						$Region = "America";
+						$Pais = "Mexico";
+						$Conexion = mysqli_connect("localhost","root","","tynod");
+						
+						$ID1 = mysqli_query($Conexion, "select count(ID) as ID from usuarios");
+							
+						$NumeroID = mysqli_fetch_array($ID1);				
+
+						
+						$ID = $NumeroID['ID'] + 1;
+						
+						
+						$regis = mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad')");
+							
+						if(!$regis)
+						{
+							mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad')");
+							echo mysqli_error($Conexion);
+						}
+						
+						
+						
+			
+						mysqli_close($Conexion);
+						
+					}
+					
+					
+				
+				?>
 </html>
+
