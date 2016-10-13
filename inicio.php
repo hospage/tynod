@@ -26,6 +26,8 @@
 				<input type = "text" name = "Numero" placeholder="Opcional" class = "inputTextPopup"><br><br>
 				Correo:
 				<input type = "text" name = "Correo" class = "inputTextPopup"><br><br>
+				Edad: 
+				<input type = "text" name = "Edad" class = "inputTextPopup"><br><br>
 				Contrase&ntilde;a:
 				<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
 				Confirmar Contrase&ntilde;a:
@@ -198,45 +200,45 @@
 			}
 		</script>
 	</body>
-				<?php
-					
-					if (isset($_REQUEST['btnRegistro']))
-					{
-						
-						$Nombre = $_REQUEST['Nombre'];
-						$Numero = $_REQUEST['Numero'];
-						$Correo = $_REQUEST['Correo'];
-						$Nacimiento = $_REQUEST['bday'];
-						$Edad = $_REQUEST['Edad'];
-						$Pass = $_REQUEST['Contrasena'];
-						$Region = "America";
-						$Pais = "Mexico";
-						$Conexion = mysqli_connect("localhost","root","","tynod");
-						
-						$ID1 = mysqli_query($Conexion, "select count(ID) as ID from usuarios");
-							
-						$NumeroID = mysqli_fetch_array($ID1);				
-
-						
-						$ID = $NumeroID['ID'] + 1;
-						
-						
-						$regis = mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad')");
-							
-						if(!$regis)
-						{
-							mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad')");
-							echo mysqli_error($Conexion);
-						}
-						
-						
-						
+		<?php
 			
-						mysqli_close($Conexion);
-						
-					}
-					
+			if (isset($_REQUEST['btnRegistro']))
+			{
 				
-				?>
+				$Nombre = $_REQUEST['Nombre'];
+				$Numero = $_REQUEST['Numero'];
+				$Correo = $_REQUEST['Correo'];
+				$Nacimiento = $_REQUEST['bday'];
+				$Edad = $_REQUEST['Edad'];
+				$Pass = $_REQUEST['Contrasena'];
+				$Region = "America";
+				$Pais = "Mexico";
+				$Conexion = mysqli_connect("localhost","root","","tynod");
+				
+				$ID1 = mysqli_query($Conexion, "select count(ID) as ID from usuarios");
+					
+				$NumeroID = mysqli_fetch_array($ID1);				
+
+				
+				$ID = $NumeroID['ID'] + 1;
+				
+				
+				$regis = mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad')");
+					
+				if(!$regis)
+				{
+					mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad')");
+					echo mysqli_error($Conexion);
+				}
+				
+				
+				
+	
+				mysqli_close($Conexion);
+				
+			}
+			
+		
+		?>
 </html>
 
