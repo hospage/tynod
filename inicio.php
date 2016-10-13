@@ -8,7 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
 	</head>
 	<body>
- 
 		<div class="popup" data-popup="popup-1">
 		    <div class="popup-inner">
 		    <div id = "divEscoge">
@@ -30,11 +29,7 @@
 				Contrase&ntilde;a:
 				<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
 				Confirmar Contrase&ntilde;a:
-<<<<<<< Updated upstream
-				<input type = "password" name = "Contrasena2"  class = "inputTextPopup"><br><br>
-=======
-				<input type = "password" name = "Contrasena2"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"> <i class = "fa fa-circle"></i> </div> <br><br>
->>>>>>> Stashed changes
+				<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"> <i class = "fa fa-circle"></i> </div> <br><br>
 				Fecha de Nacimiento:
                 <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup"><br><br>
 				
@@ -150,11 +145,21 @@
 				$('#divRegistro').fadeIn(500);
 			});
 
-			$('#txtContra1').keypress(function(){
+			$('#txtContra1').keyup(function(){
 
 				setTimeout(function() {
                    var contra = $('#txtContra1').val();
                    checaValor(contra);
+               }, 0);
+
+			});
+
+			$('#txtContra2').keyup(function(){
+
+				setTimeout(function() {
+                   var contra1 = $('#txtContra1').val();
+                   var contra2 = $('#txtContra2').val();
+                   checaIguales(contra1, contra2);
                }, 0);
 
 			});
@@ -173,6 +178,23 @@
 
 				$('#dot1').html(html);
 				$('#dot1').show();
+			}
+
+			function checaIguales(password1, password2)
+			{
+				var html = '';
+				if(password1 != password2)
+				{
+					html += '<i class = "fa fa-circle" style = "color: #ff3333;"></i> Las contrase&ntilde;as no coinciden';
+				}
+				else
+				{
+					html += '';
+				}
+
+
+				$('#dot2').html(html);
+				$('#dot2').show();
 			}
 		</script>
 	</body>
