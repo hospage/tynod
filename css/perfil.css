@@ -1,0 +1,23 @@
+/* Color general: #00b38f */
+
+.barraMenu
+{
+	width: 100%;
+	background-color: #00b38f;
+	padding: 5px 10px 5px 10px;
+}
+
+.centro
+{
+	width: 1400px;
+	max-width: 100%;
+	margin: auto;
+	color: #e0ebeb;
+	padding:  15px 15px 20px 15px;
+}
+
+.imgLogo
+{
+	margin: 7px;
+	width: 30px;
+}

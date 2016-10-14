@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="css/tynod.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
+	<title> Bienvenido a TyNod </title>
 	</head>
 	<body>
 		<div class="popup" data-popup="popup-1">
@@ -32,6 +33,7 @@
 				<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
 				Confirmar Contrase&ntilde;a:
 				<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"> <i class = "fa fa-circle"></i> </div> <br><br>
+				Ciudad: <div style = "display: inline-block;" id = "localizacion"> </div> <br><br>
 				Fecha de Nacimiento:
                 <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup"><br><br>
 				
@@ -43,6 +45,7 @@
 		</div>
 
 		<script src = "js/jquery-3.1.0.js"></script>
+		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
 		<div id = "container-fluid">
 			<div id = "inicio">
 			<div id = "registro"></div>
@@ -109,10 +112,13 @@
 
 		?>
 		<script type="text/javascript">
-		
+			var unit = 'c';
+
+
 			$(document).ready(function(){
 				$('#divRegistro').hide();
 				$('.dot').hide();
+				checkWeather();
 			});
 
 			 $('[data-popup-open]').on('click', function(e)  {
@@ -178,6 +184,11 @@
 					html += '<i class = "fa fa-circle" style = "color: #33cc33;"></i> Perfecta!';
 				}
 
+				if(contrasena == "")
+				{
+					$('#dot2').html("");
+				}
+
 				$('#dot1').html(html);
 				$('#dot1').show();
 			}
@@ -197,6 +208,37 @@
 
 				$('#dot2').html(html);
 				$('#dot2').show();
+			}
+
+			function loadWeather(location, woeid) {
+				$.simpleWeather({
+					location: location,
+					woeid: woeid,
+					unit: 'c',
+					success: function(weather) {
+						
+						$('#localizacion').html(weather.city + ", " + weather.region + ", " + weather.country);
+						
+					},
+					error: function(error) {
+						$("#weather-info").html('<p>'+error+'</p>');
+					}
+				});
+			}
+
+
+			function checkWeather()
+			{
+				if(navigator.geolocation)
+				{
+					navigator.geolocation.getCurrentPosition(function(position) {
+						loadWeather(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
+					});
+				}
+				else
+				{
+					$('#weather-info').html('Sorry, geolocation is not supported by your web browser :-(');
+				}
 			}
 		</script>
 	</body>
