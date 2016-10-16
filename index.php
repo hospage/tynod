@@ -19,7 +19,7 @@
 			         </center>
 			    </div>
 			    <div id = "divRegistro"> 
-					<form action = "inicio.php" method = "post">
+					<form action = "index.php" method = "post">
 					Nombre:
 					<input type = "text" name = "Nombre" class = "inputTextPopup"><br><br>
 					Numero Telef&oacute;nico:
