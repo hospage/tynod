@@ -1,5 +1,0 @@
-============================ NOTAS DEL COMMIT ==================================
-
-
-a) Agregue el registro para empleados
-b) Agregue el log-in (al dar click a ingresa)

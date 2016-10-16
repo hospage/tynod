@@ -18,79 +18,90 @@
 			</div>
 		</div>
 		<div class = "centro">
-			<div class = "tituloRegistro"> <h2 class = "ftTitulo"> Registro de Datos </h2> </div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> Nombre: </p> 
+			<form action="regisEmpleado.php" method="POST">
+				<div class = "tituloRegistro"> <h2 class = "ftTitulo"> Registro de Datos </h2> </div>
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> Nombre: </p> 
+					</div>
+					<div class = "caja">
+						<input type = "text" name = "" class = "txtIngreso" id = "caja1">
+					</div>
 				</div>
-				<div class = "caja">
-					<input type = "text" name = "" class = "txtIngreso">
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> Apellido: </p> 
+					</div>
+					<div class = "caja">
+						<input type = "text" name = "" class = "txtIngreso" id = "caja2">
+					</div>
 				</div>
-			</div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> Apellido: </p> 
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> Profesi&oacute;n: </p> 
+					</div>
+					<div class = "caja">
+						<input type = "text" name = "" class = "txtIngreso" id = "caja3">
+					</div>
 				</div>
-				<div class = "caja">
-					<input type = "text" name = "" class = "txtIngreso">
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> RFC: </p> 
+					</div>
+					<div class = "caja">
+						<input type = "text" name = "" class = "txtIngreso" id = "caja4">
+					</div>
 				</div>
-			</div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> Profesion: </p> 
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> Contrase&ntilde;a </p> 
+					</div>
+					<div class = "caja">
+						<input type = "password" name = "" class = "txtIngreso" id = "txtContra1"> <div class = "dot" id = "dot1"> </div>
+					</div>
 				</div>
-				<div class = "caja">
-					<input type = "text" name = "" class = "txtIngreso">
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> Confirmar Contrase&ntilde;a </p> 
+					</div>
+					<div class = "caja">
+						<input type = "password" name = "" class = "txtIngreso" id = "txtContra2"> <div class = "dot" id = "dot2"> </div>
+					</div>
 				</div>
-			</div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> RFC: </p> 
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> C&oacute;digo Postal: </p> 
+					</div>
+					<div class = "caja">
+						<input type = "text" name = "" class = "txtIngreso" id = "caja5">
+					</div>
 				</div>
-				<div class = "caja">
-					<input type = "text" name = "" class = "txtIngreso">
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> Direcci&oacute;n: </p> 
+					</div>
+					<div class = "caja">
+						<input type = "text" name = "" class = "txtIngreso" id = "caja6">
+					</div>
 				</div>
-			</div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> Contrase&ntilde;a </p> 
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> N&uacute;mero de Telefono </p> 
+					</div>
+					<div class = "caja">
+						<input type = "text" name = "" class = "txtIngreso" id = "caja7">
+					</div>
 				</div>
-				<div class = "caja">
-					<input type = "password" name = "" class = "txtIngreso" id = "txtContra1"> <div class = "dot" id = "dot1"> </div>
+				<div class = "entrada">
+					<div class = "dato">
+						<p class = "ftDato"> Localidad: </p> 
+					</div>
+					<div class = "caja">
+						<div id = "localizacion"> </div>
+					</div>
 				</div>
-			</div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> Confirmar Contrase&ntilde;a </p> 
-				</div>
-				<div class = "caja">
-					<input type = "password" name = "" class = "txtIngreso" id = "txtContra2"> <div class = "dot" id = "dot2"> </div>
-				</div>
-			</div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> C&oacute;digo Postal: </p> 
-				</div>
-				<div class = "caja">
-					<input type = "text" name = "" class = "txtIngreso">
-				</div>
-			</div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> Direcci&oacute;n: </p> 
-				</div>
-				<div class = "caja">
-					<input type = "text" name = "" class = "txtIngreso">
-				</div>
-			</div>
-			<div class = "entrada">
-				<div class = "dato">
-					<p class = "ftDato"> Localidad: </p> 
-				</div>
-				<div class = "caja">
-					<div id = "localizacion"> </div>
-				</div>
-			</div>
+				<div class ="dato"><div class = "boton"></div> </div>
+			</form>
 		</div>
 		<script>
 			$(document).ready(function(){
@@ -110,8 +121,6 @@
 					}
                }, 0);
 
-
-
 			});
 
 			$('#txtContra2').keyup(function(){
@@ -124,9 +133,49 @@
 
 			});
 
+			$('.txtIngreso').keyup(function(){
+
+				setTimeout(function() {
+					console.log($('.txtIngreso').val());
+
+					
+					if(todosTienenValor() && $('#txtContra1').val() == $('#txtContra2').val())
+					{
+						$('.boton').html('<button class = "btnRegistro"> Reg&iacute;strate </button>')
+					}
+					
+               }, 0);
+
+			});
+
+			function todosTienenValor()
+			{
+				var todosTienen = true;
+				var contador = 1;
+
+				for(contador = 1; contador <= 7; contador++)
+				{
+					if($('#caja'+contador).val() == "")
+					{
+						todosTienen = false;
+					}
+				}
+
+				if(todosTienen)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+
 			function checaValor(contrasena)
 			{
 				var html = '';
+				var tieneValor = false;
+
 				if(contrasena.length <= 7)
 				{
 					html += '<i class = "fa fa-circle" style = "color: #ff3333;"></i> La contrase&ntilde;a debe de tener 8 caracteres o mas';
@@ -134,6 +183,7 @@
 				else
 				{
 					html += '<i class = "fa fa-circle" style = "color: #33cc33;"></i> Perfecta!';
+					tieneValor = true;
 				}
 
 				if(contrasena == "")
@@ -148,6 +198,8 @@
 			function checaIguales(password1, password2)
 			{
 				var html = '';
+				var son = false;
+
 				if(password1 != password2)
 				{
 					html += '<i class = "fa fa-circle" style = "color: #ff3333;"></i> Las contrase&ntilde;as no coinciden';
@@ -155,13 +207,15 @@
 				else
 				{
 					html += '';
+					son = true;
 				}
 
 
 				$('#dot2').html(html);
 				$('#dot2').show();
-			}
 
+				return son;
+			}
 
 			function cargaLocalizacion(location, woeid) {
 				$.simpleWeather({
@@ -184,7 +238,6 @@
 					}
 				});
 			}
-
 
 			function checaLocalizacion()
 			{
