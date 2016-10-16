@@ -274,12 +274,15 @@
 				$Nacimiento = $_REQUEST['bday'];
 				$Edad = $_REQUEST['Edad'];
 				$Pass = $_REQUEST['Contrasena'];
-				$Region = "America";
-				$Pais = "Mexico";
 
 				// arreglo con los 3 valores, ciudad, region y pais, respectivamente en el arreglo
 
 				$localizacion = $_REQUEST['localizacion'];
+				
+				$Region = $localizacion[0].", ".$localizacion[1];
+				$Pais = $localizacion[2];
+				
+				
 
 
 				/* Por si quieres ver los datos que tiene 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.5.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 12, 2016 at 08:14 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-10-2016 a las 08:53:13
+-- Versión del servidor: 5.7.11
+-- Versión de PHP: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tynod`
+-- Base de datos: `tynod`
 --
 CREATE DATABASE IF NOT EXISTS `tynod` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `tynod`;
@@ -25,10 +25,10 @@ USE `tynod`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prestadores`
+-- Estructura de tabla para la tabla `prestadores`
 --
 
-CREATE TABLE IF NOT EXISTS `prestadores` (
+CREATE TABLE `prestadores` (
   `ID` int(5) NOT NULL,
   `Profesion` varchar(15) NOT NULL,
   `Nombre` varchar(30) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `prestadores` (
   `CP` int(5) NOT NULL,
   `Direccion` varchar(50) NOT NULL,
   `Region` varchar(30) NOT NULL,
-  `Estado` varchar(30) NOT NULL,
+  `Pais` varchar(30) NOT NULL,
   `Celular` bigint(15) NOT NULL,
   `Disponibilidad` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -45,10 +45,10 @@ CREATE TABLE IF NOT EXISTS `prestadores` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `solicitudes`
+-- Estructura de tabla para la tabla `solicitudes`
 --
 
-CREATE TABLE IF NOT EXISTS `solicitudes` (
+CREATE TABLE `solicitudes` (
   `ID` int(5) NOT NULL,
   `Envia` varchar(30) NOT NULL,
   `Recibe` varchar(30) NOT NULL,
@@ -60,10 +60,10 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios` (
+CREATE TABLE `usuarios` (
   `ID` int(5) NOT NULL,
   `Nombre` varchar(30) NOT NULL,
   `Correo` varchar(30) NOT NULL,
@@ -72,9 +72,24 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `Pais` varchar(20) NOT NULL,
   `Edad` int(3) NOT NULL,
   `Nacimiento` text NOT NULL,
-  `Telefono` bigint(15) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `Telefono` bigint(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `prestadores`
+--
+ALTER TABLE `prestadores`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

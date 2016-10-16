@@ -25,7 +25,7 @@
 						<p class = "ftDato"> Nombre: </p> 
 					</div>
 					<div class = "caja">
-						<input type = "text" name = "" class = "txtIngreso" id = "caja1">
+						<input type = "text" name = "Nombre" class = "txtIngreso" id = "caja1">
 					</div>
 				</div>
 				<div class = "entrada">
@@ -33,7 +33,7 @@
 						<p class = "ftDato"> Apellido: </p> 
 					</div>
 					<div class = "caja">
-						<input type = "text" name = "" class = "txtIngreso" id = "caja2">
+						<input type = "text" name = "Apellido" class = "txtIngreso" id = "caja2">
 					</div>
 				</div>
 				<div class = "entrada">
@@ -41,7 +41,7 @@
 						<p class = "ftDato"> Profesi&oacute;n: </p> 
 					</div>
 					<div class = "caja">
-						<input type = "text" name = "" class = "txtIngreso" id = "caja3">
+						<input type = "text" name = "Profesion" class = "txtIngreso" id = "caja3">
 					</div>
 				</div>
 				<div class = "entrada">
@@ -49,7 +49,7 @@
 						<p class = "ftDato"> RFC: </p> 
 					</div>
 					<div class = "caja">
-						<input type = "text" name = "" class = "txtIngreso" id = "caja4">
+						<input type = "text" name = "RFC" class = "txtIngreso" id = "caja4">
 					</div>
 				</div>
 				<div class = "entrada">
@@ -57,7 +57,7 @@
 						<p class = "ftDato"> Contrase&ntilde;a </p> 
 					</div>
 					<div class = "caja">
-						<input type = "password" name = "" class = "txtIngreso" id = "txtContra1"> <div class = "dot" id = "dot1"> </div>
+						<input type = "password" name = "Contrasena1" class = "txtIngreso" id = "txtContra1"> <div class = "dot" id = "dot1"> </div>
 					</div>
 				</div>
 				<div class = "entrada">
@@ -65,7 +65,7 @@
 						<p class = "ftDato"> Confirmar Contrase&ntilde;a </p> 
 					</div>
 					<div class = "caja">
-						<input type = "password" name = "" class = "txtIngreso" id = "txtContra2"> <div class = "dot" id = "dot2"> </div>
+						<input type = "password" name = "Contrasena2" class = "txtIngreso" id = "txtContra2"> <div class = "dot" id = "dot2"> </div>
 					</div>
 				</div>
 				<div class = "entrada">
@@ -73,7 +73,7 @@
 						<p class = "ftDato"> C&oacute;digo Postal: </p> 
 					</div>
 					<div class = "caja">
-						<input type = "text" name = "" class = "txtIngreso" id = "caja5">
+						<input type = "text" name = "CP" class = "txtIngreso" id = "caja5">
 					</div>
 				</div>
 				<div class = "entrada">
@@ -81,7 +81,7 @@
 						<p class = "ftDato"> Direcci&oacute;n: </p> 
 					</div>
 					<div class = "caja">
-						<input type = "text" name = "" class = "txtIngreso" id = "caja6">
+						<input type = "text" name = "Direccion" class = "txtIngreso" id = "caja6">
 					</div>
 				</div>
 				<div class = "entrada">
@@ -89,7 +89,7 @@
 						<p class = "ftDato"> N&uacute;mero de Telefono </p> 
 					</div>
 					<div class = "caja">
-						<input type = "text" name = "" class = "txtIngreso" id = "caja7">
+						<input type = "text" name = "Numero" class = "txtIngreso" id = "caja7">
 					</div>
 				</div>
 				<div class = "entrada">
@@ -141,7 +141,7 @@
 					
 					if(todosTienenValor() && $('#txtContra1').val() == $('#txtContra2').val())
 					{
-						$('.boton').html('<button class = "btnRegistro"> Reg&iacute;strate </button>')
+						$('.boton').html('<button type = "input" class = "btnRegistro" name = "btnRegistro"> Reg&iacute;strate </button>')
 					}
 					
                }, 0);
@@ -254,4 +254,44 @@
 			}
 		</script>
 	</body>
+		<?php
+			
+			if (isset($_REQUEST['btnRegistro']))
+			{
+				
+				$nombre = $_REQUEST['Nombre'];
+				$apellido = $_REQUEST['Apellido'];
+				$profesion = $_REQUEST['Profesion'];
+				$rfc = $_REQUEST['RFC'];
+				$pass = $_REQUEST['Contrasena1'];
+				$cp = $_REQUEST['CP'];
+				$direccion = $_REQUEST['Direccion'];
+				$numero = $_REQUEST['Numero'];
+				$localizacion = $_REQUEST['localizacion'];
+				$disponibilidad = "---";
+				
+				$localizacion = $_REQUEST['localizacion'];
+				
+				$region = $localizacion[0].", ".$localizacion[1];
+				$pais = $localizacion[2];
+				
+				$Conexion = mysqli_connect("localhost","root","","tynod");
+				
+				$ID1 = mysqli_query($Conexion, "select count(ID) as ID from prestadores");
+					
+				$NumeroID = mysqli_fetch_array($ID1);				
+
+				
+				$ID = $NumeroID['ID'] + 1;
+				
+				
+				
+				mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad')");
+				echo mysqli_error($Conexion);
+					
+				
+				mysqli_close($Conexion);
+			}
+			
+		?>
 </html>
