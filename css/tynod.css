@@ -209,6 +209,8 @@ body
     border-radius:3px;
     background:#fff;
     padding-top: 50px;
+    overflow-y: scroll;
+    max-height: 100%;
 }
  
 .popup-close {
