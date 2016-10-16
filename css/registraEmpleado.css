@@ -1,7 +1,64 @@
-.barraTynod
+.centro
 {
-	background-color: #00b38f;
-	overflow: hidden;
-	padding: 10px 10px 60px 10px ;
-	margin: auto !important;
+	width: 1200px;
+	max-width: 100%;
+	margin: auto;
+}
+
+.tituloRegistro
+{
+	background-color: #4775d1;
+	color: #f2f2f2;
+	height: auto;
+	padding: 20px 30px 15px 30px;
+	border-radius: 20px;
+	width: auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.txtIngreso
+{
+	padding: 7px 3px 5px 3px;
+	font-size: 18px;
+	max-width: 40%;
+	width: 500px;
+	height: 40px;
+	border: 2px solid #00b38f;
+	display: inline-block;
+	border-radius: 5px;
+	outline: none;
+}
+
+.ftDato
+{
+	color: #293d3d;
+	font-size: 18px;
+	display: inline-block;
+	margin-top: 7px;
+	margin-left: 30px;
+}
+
+.dato
+{
+	display: inline-block;
+}
+
+.caja
+{
+	display: inline-block;
+}
+
+.entrada
+{
+	margin: 20px;
+	max-width: 100%;
+}
+
+.dot
+{
+	display: inline-block;
+	margin-left: 10px;
+	width: 30%;
+	position: absolute;
 }

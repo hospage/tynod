@@ -217,8 +217,8 @@ body
     padding-top:4px;
     display:inline-block;
     position:absolute;
-    top:0px;
-    right:0px;
+    top:30px;
+    right:30px;
     transition:ease 0.25s all;
     -webkit-transform:translate(50%, -50%);
     transform:translate(50%, -50%);
@@ -251,7 +251,7 @@ body
 
 .trabajador
 {
-	max-width: 100%;
+	max-width: 80%;
 	width: 400px;
 	height: auto;
 	padding: 20px 15px 15px 15px;
@@ -274,7 +274,7 @@ body
 
 .usuario
 {
-	max-width: 100%;
+	max-width: 80%;
 	width: 400px;
 	height: auto;
 	padding: 20px 15px 15px 15px;

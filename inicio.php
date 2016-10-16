@@ -11,36 +11,44 @@
 	<body>
 		<div class="popup" data-popup="popup-1">
 		    <div class="popup-inner">
-		    <div id = "divEscoge">
-
-		         <h3>Eres un:</h3>
-		         <center>
-		         <div class = "trabajador"> <a href = "#" class = "rmLink"><h4> Trabajador <i class = "fa fa-suitcase"></i> </h4> </a> </div> 
-		         <div class = "usuario"> <a href = "#" class = "rmLink"><h4> Usuario <i class = "fa fa-user"></i> </h4> </a> </div> 
-		         </center>
-		    </div>
-		    <div id = "divRegistro"> 
-				<form action = "inicio.php" method = "post">
-				Nombre:
-				<input type = "text" name = "Nombre" class = "inputTextPopup"><br><br>
-				Numero Telefonico:
-				<input type = "text" name = "Numero" placeholder="Opcional" class = "inputTextPopup"><br><br>
-				Correo:
-				<input type = "text" name = "Correo" class = "inputTextPopup"><br><br>
-				Edad: 
-				<input type = "text" name = "Edad" class = "inputTextPopup"><br><br>
-				Contrase&ntilde;a:
-				<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
-				Confirmar Contrase&ntilde;a:
-				<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"> <i class = "fa fa-circle"></i> </div> <br><br>
-				Ciudad: <div style = "display: inline-block;" id = "localizacion"> </div> <br><br>
-				Fecha de Nacimiento:
-                <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup"><br><br>
-				
-				<button type = "input" class = "btnGeneral" name = "btnRegistro"> Reg&iacute;strate </button>
-				</form>
-			</div>
+			    <div id = "divEscoge">
+			         <h3>Eres un:</h3>
+			         <center>
+			         <div class = "trabajador"> <a href = "#" class = "rmLink" onclick='window.location = "regisEmpleado.php"'><h4> Trabajador <i class = "fa fa-suitcase"></i> </h4> </a> </div> 
+			         <div class = "usuario"> <a href = "#" class = "rmLink"><h4> Usuario <i class = "fa fa-user"></i> </h4> </a> </div> 
+			         </center>
+			    </div>
+			    <div id = "divRegistro"> 
+					<form action = "inicio.php" method = "post">
+					Nombre:
+					<input type = "text" name = "Nombre" class = "inputTextPopup"><br><br>
+					Numero Telef&oacute;nico:
+					<input type = "text" name = "Numero" placeholder="Opcional" class = "inputTextPopup"><br><br>
+					Correo:
+					<input type = "text" name = "Correo" class = "inputTextPopup"><br><br>
+					Edad: 
+					<input type = "text" name = "Edad" class = "inputTextPopup"><br><br>
+					Contrase&ntilde;a:
+					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
+					Confirmar Contrase&ntilde;a:
+					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"> <i class = "fa fa-circle"></i> </div> <br><br>
+					Ciudad: <div style = "display: inline-block;" id = "localizacion"> </div> <br><br>
+					Fecha de Nacimiento:
+	                <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup"><br><br>
+					
+					<button type = "input" class = "btnGeneral" name = "btnRegistro"> Reg&iacute;strate </button>
+					</form>
+				</div>
 		        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+		    </div>
+		</div>
+
+		<div class="popup" data-popup="popup-2">
+		    <div class="popup-inner">
+			    Correo Electr&oacute;nico: <input type="text" name="" class = "inputTextPopup"><br><br>
+			    Contrase&ntilde;a: <input type="text" name="" class = "inputTextPopup"><br><br>
+			    <button type = "submit" class = "btnGeneral"> Ingresa </button>
+		        <a class="popup-close" data-popup-close="popup-2" href="#">x</a>
 		    </div>
 		</div>
 
@@ -50,7 +58,7 @@
 			<div id = "inicio">
 			<div id = "registro"></div>
 				<div class = "centro">
-					<div><h3 style = "float: left; position: absolute;"> <img src="logos/LogoLlave.png" style = "width: 40px;">  TyNod </h3> <a href="#" style = "float: right;" class = "ingreso"> INGRESA </a></div>
+					<div><h3 style = "float: left; position: absolute;"> <img src="logos/LogoLlave.png" style = "width: 40px;">  TyNod </h3> <a href="#" style = "float: right;" class = "ingreso" id = "linkIngresa" data-popup-open="popup-2"> INGRESA </a></div>
 					<?php espacios(7); ?>
 					<div id = "poster1"><h1>Ofrece tus servicios totalmente gratis. </h1></div>
 
@@ -172,6 +180,12 @@
 
 			});
 
+			$('#linkIngresa').on('click', function(){
+
+				var html = $('.popup-inner').html();
+
+			});
+
 			function checaValor(contrasena)
 			{
 				var html = '';
@@ -218,6 +232,12 @@
 					success: function(weather) {
 						
 						$('#localizacion').html(weather.city + ", " + weather.region + ", " + weather.country);
+
+						var localizacion = [weather.city, weather.region, weather.country];
+
+						localizacion.forEach(function(element, index, array){
+							$('#localizacion').append('<input type = "hidden" name = "localizacion['+index+']" value = "'+element+'">');
+						});
 						
 					},
 					error: function(error) {
@@ -240,13 +260,14 @@
 					$('#weather-info').html('Sorry, geolocation is not supported by your web browser :-(');
 				}
 			}
+
 		</script>
 	</body>
 		<?php
 			
 			if (isset($_REQUEST['btnRegistro']))
 			{
-				
+				echo "asdfasdf";
 				$Nombre = $_REQUEST['Nombre'];
 				$Numero = $_REQUEST['Numero'];
 				$Correo = $_REQUEST['Correo'];
@@ -255,6 +276,20 @@
 				$Pass = $_REQUEST['Contrasena'];
 				$Region = "America";
 				$Pais = "Mexico";
+
+				// arreglo con los 3 valores, ciudad, region y pais, respectivamente en el arreglo
+
+				$localizacion = $_REQUEST['localizacion'];
+
+
+				/* Por si quieres ver los datos que tiene 
+				foreach ($localizacion as $valor) {
+					echo $valor."|";
+				}
+				*/
+
+				
+				
 				$Conexion = mysqli_connect("localhost","root","","tynod");
 				
 				$ID1 = mysqli_query($Conexion, "select count(ID) as ID from usuarios");
@@ -277,7 +312,6 @@
 				
 	
 				mysqli_close($Conexion);
-				
 			}
 			
 		
