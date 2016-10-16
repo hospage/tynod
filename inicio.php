@@ -267,7 +267,7 @@
 			
 			if (isset($_REQUEST['btnRegistro']))
 			{
-				echo "asdfasdf";
+				
 				$Nombre = $_REQUEST['Nombre'];
 				$Numero = $_REQUEST['Numero'];
 				$Correo = $_REQUEST['Correo'];
