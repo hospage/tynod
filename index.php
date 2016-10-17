@@ -46,7 +46,7 @@
 		<div class="popup" data-popup="popup-2">
 		    <div class="popup-inner">
 			    Correo Electr&oacute;nico: <input type="text" name="" class = "inputTextPopup" id = "correo"><br><br>
-			    Contrase&ntilde;a: <input type="text" name="" class = "inputTextPopup"><br><br>
+			    Contrase&ntilde;a: <input type="password" name="" class = "inputTextPopup" id = "psw"><br><br>
 			    <button type = "submit" class = "btnGeneral" id  = "btnIngresa"> Ingresa </button>
 		        <a class="popup-close" data-popup-close="popup-2" href="#">x</a>
 		    </div>
@@ -130,7 +130,7 @@
 			});
 			
 			$('#btnIngresa').on('click', function(){
-				$.post('php/sesion.php', {correo: $('#correo').val()}, function(e){ alert(e);});
+				$.post('php/sesion.php', {correo: $('#correo').val(), psw: $('#psw').val()}, function(e){ alert(e);});
 			});
 
 			 $('[data-popup-open]').on('click', function(e)  {
