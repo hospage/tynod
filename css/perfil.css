@@ -4,7 +4,6 @@
 {
 	width: 100%;
 	background-color: #00b38f;
-	padding: 5px 10px 5px 10px;
 }
 
 .centro
@@ -20,4 +19,63 @@
 {
 	margin: 7px;
 	width: 30px;
+}
+
+.ftTynod
+{
+	color:  #f2f2f2;
+	margin-bottom: -13px;
+	margin-top: -10px;
+}
+
+.divBuscar
+{
+	border: 2px solid white;
+	background-color: #00b38f;
+	padding: 13px 10px 10px 10px;
+	max-width: 40%;
+	margin: inherit;
+	border-radius: 20px;
+	width:auto;
+	height: 40px;
+	margin-top: -40px;
+	padding: 5px 5px 0px 15px;
+	margin-bottom: -13px;
+}
+
+.btnBuscar
+{
+	background-color: #00b38f;
+}
+
+a.buscar
+{
+	color: white;
+	display: inline-block;
+	float: right;
+	padding-right: 10px;
+}
+
+.divBuskar
+{
+	display: inline-block;
+}
+
+.txtBuscar
+{
+	border: none;
+	outline: none;
+	border-radius: 20px;
+	margin: 0px;
+	color: white;
+	font-size: 13px;
+	display: table-cell;
+	background-color: #00b38f;
+	flex-grow: 1;
+	box-sizing: border-box;
+	width: 80%;
+}
+
+::-webkit-input-placeholder {
+   color: white;
 }

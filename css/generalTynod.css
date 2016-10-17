@@ -5,21 +5,35 @@
 	width: 100%;
 }
 
-
 .imgLogo
 {
 	width: 30px;
 }
-
 
 .ftTitulo
 {
 	color:  #f2f2f2;
 }
 
-
 body
 {
 	font-family: 'Raleway', 'Arial';
 	background-color:  #f2f2f2;
 }
+
+.rmLink
+{
+	color: inherit !important;
+}
+
+.rmLink:hover
+{
+	text-decoration: none;
+	color: inherit !important;
+}
+
+.rmLink:active
+{
+	color: inherit !important;
+}
+
