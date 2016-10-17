@@ -271,8 +271,8 @@
 				$disponibilidad = "---";
 				
 				$localizacion = $_REQUEST['localizacion'];
-				
-				$region = $localizacion[0].", ".$localizacion[1];
+				$ciudad = $localizacion[0];
+				$region = $localizacion[1];
 				$pais = $localizacion[2];
 				
 				$Conexion = mysqli_connect("localhost","root","","tynod");
@@ -286,7 +286,7 @@
 				
 				
 				
-				mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad')");
+				mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad')");
 				echo mysqli_error($Conexion);
 					
 				

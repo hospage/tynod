@@ -45,9 +45,9 @@
 
 		<div class="popup" data-popup="popup-2">
 		    <div class="popup-inner">
-			    Correo Electr&oacute;nico: <input type="text" name="" class = "inputTextPopup"><br><br>
+			    Correo Electr&oacute;nico: <input type="text" name="" class = "inputTextPopup" id = "correo"><br><br>
 			    Contrase&ntilde;a: <input type="text" name="" class = "inputTextPopup"><br><br>
-			    <button type = "submit" class = "btnGeneral"> Ingresa </button>
+			    <button type = "submit" class = "btnGeneral" id  = "btnIngresa"> Ingresa </button>
 		        <a class="popup-close" data-popup-close="popup-2" href="#">x</a>
 		    </div>
 		</div>
@@ -127,6 +127,10 @@
 				$('#divRegistro').hide();
 				$('.dot').hide();
 				checkWeather();
+			});
+			
+			$('#btnIngresa').on('click', function(){
+				$.post('php/sesion.php', {correo: $('#correo').val()}, function(e){ alert(e);});
 			});
 
 			 $('[data-popup-open]').on('click', function(e)  {
@@ -278,8 +282,8 @@
 				// arreglo con los 3 valores, ciudad, region y pais, respectivamente en el arreglo
 
 				$localizacion = $_REQUEST['localizacion'];
-				
-				$Region = $localizacion[0].", ".$localizacion[1];
+				$ciudad = $localizacion[0];
+				$Region = $localizacion[1];
 				$Pais = $localizacion[2];
 				
 				
@@ -303,11 +307,11 @@
 				$ID = $NumeroID['ID'] + 1;
 				
 				
-				$regis = mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad')");
+				$regis = mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad, Ciudad) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad', '$ciudad')");
 					
 				if(!$regis)
 				{
-					mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad')");
+					mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad, Ciudad) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad', '$ciudad')");
 					echo mysqli_error($Conexion);
 				}
 				
