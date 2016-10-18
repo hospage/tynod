@@ -306,22 +306,43 @@
 				
 				$ID = $NumeroID['ID'] + 1;
 				
+				$Uso = false;
 				
-				$regis = mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad, Ciudad) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad', '$ciudad')");
-					
-				if(!$regis)
+				$Mostrar = mysqli_query($Conexion, "select Correo from usuarios");
+				while ($MostrarDatos = mysqli_fetch_array($Mostrar))
 				{
-					mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad, Ciudad) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad', '$ciudad')");
-					echo mysqli_error($Conexion);
+
+					
+					if ($MostrarDatos['Correo'] == $Correo)
+					{
+						$Uso = true;
+					}
+					Else
+					{
+						
+						$Uso = false;
+						
+					}					
 				}
 				
-				
-				
-	
+				if ($Uso)
+					{
+						echo "Este correo ya ha sido usado";
+					}
+				Else
+					{
+						$regis = mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad, Ciudad) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad', '$ciudad')");
+					
+						if(!$regis)
+						{
+							mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad, Ciudad) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad', '$ciudad')");
+							echo mysqli_error($Conexion);
+						}
+					}
+					
 				mysqli_close($Conexion);
 			}
 			
-		
 		?>
 </html>
 

@@ -94,6 +94,14 @@
 				</div>
 				<div class = "entrada">
 					<div class = "dato">
+						<p class = "ftDato"> Correo </p> 
+					</div>
+					<div class = "caja">
+						<input type = "text" name = "Correo" class = "txtIngreso" id = "caja8">
+					</div>
+				</div>
+				<div class = "entrada">
+					<div class = "dato">
 						<p class = "ftDato"> Localidad: </p> 
 					</div>
 					<div class = "caja">
@@ -153,7 +161,7 @@
 				var todosTienen = true;
 				var contador = 1;
 
-				for(contador = 1; contador <= 7; contador++)
+				for(contador = 1; contador <= 8; contador++)
 				{
 					if($('#caja'+contador).val() == "")
 					{
@@ -269,6 +277,7 @@
 				$numero = $_REQUEST['Numero'];
 				$localizacion = $_REQUEST['localizacion'];
 				$disponibilidad = "---";
+				$correo = $_REQUEST['Correo'];
 				
 				$localizacion = $_REQUEST['localizacion'];
 				$ciudad = $localizacion[0];
@@ -285,11 +294,33 @@
 				$ID = $NumeroID['ID'] + 1;
 				
 				
-				
-				mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad')");
-				echo mysqli_error($Conexion);
+				$Mostrar = mysqli_query($Conexion, "select Correo from prestadores");
+				while ($MostrarDatos = mysqli_fetch_array($Mostrar))
+				{
+
 					
+					if ($MostrarDatos['Correo'] == $correo)
+					{
+						$Uso = true;
+					}
+					Else
+					{
+						
+						$Uso = false;
+						
+					}					
+				}
 				
+				if ($Uso)
+					{
+						echo "Este correo ya ha sido usado";
+					}
+				Else
+					{
+						mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo')");
+						echo mysqli_error($Conexion);
+					}
+
 				mysqli_close($Conexion);
 			}
 			

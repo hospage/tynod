@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2016 a las 19:30:33
+-- Tiempo de generación: 18-10-2016 a las 05:32:04
 -- Versión del servidor: 5.7.11
 -- Versión de PHP: 5.6.19
 
@@ -40,7 +40,8 @@ CREATE TABLE `prestadores` (
   `Pais` varchar(30) NOT NULL,
   `Celular` bigint(15) NOT NULL,
   `Disponibilidad` varchar(15) NOT NULL,
-  `Ciudad` text NOT NULL
+  `Ciudad` text NOT NULL,
+  `Correo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -76,16 +77,6 @@ CREATE TABLE `usuarios` (
   `Telefono` bigint(15) NOT NULL,
   `Ciudad` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`ID`, `Nombre`, `Correo`, `Password`, `Region`, `Pais`, `Edad`, `Nacimiento`, `Telefono`, `Ciudad`) VALUES
-(1, 'Arturo Ceron', 'suzaku9911@gmail.com', '555264as', 'Tijuana,  BC', 'Mexico', 16, '1999-11-11', 6642723036, ''),
-(2, 'Nico Pendeja', 'josmanpadilla@hotmail.com', 'DarkBunn28', ', ', '', 17, '1999-05-28', 6643568364, ''),
-(3, 'Nico Pendeja', 'josmanpadilla@hotmail.com', 'DarkBunn28', '', '', 17, '1999-05-28', 6643568364, ''),
-(4, 'Pepe', 'asd', '12345678', ' BC', 'Mexico', 12, '1999-11-11', 0, 'Tijuana');
 
 --
 -- Índices para tablas volcadas
