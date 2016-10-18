@@ -21,22 +21,22 @@
 			    <div id = "divRegistro"> 
 					<form action = "index.php" method = "post">
 					Nombre:
-					<input type = "text" name = "Nombre" class = "inputTextPopup"><br><br>
+					<input type = "text" name = "Nombre" class = "inputTextPopup" id = "txtNombre"><br><br>
 					Numero Telef&oacute;nico:
-					<input type = "text" name = "Numero" placeholder="Opcional" class = "inputTextPopup"><br><br>
+					<input type = "text" name = "Numero" placeholder="Opcional" class = "inputTextPopup" id = "txtTelefono"><br><br>
 					Correo:
-					<input type = "text" name = "Correo" class = "inputTextPopup"><br><br>
+					<input type = "text" name = "Correo" class = "inputTextPopup" id = "txtCorreo"><br><br>
 					Edad: 
-					<input type = "text" name = "Edad" class = "inputTextPopup"><br><br>
+					<input type = "text" name = "Edad" class = "inputTextPopup" id = "txtEdad"><br><br>
 					Contrase&ntilde;a:
 					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
 					Confirmar Contrase&ntilde;a:
 					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"> <i class = "fa fa-circle"></i> </div> <br><br>
 					Ciudad: <div style = "display: inline-block;" id = "localizacion"> </div> <br><br>
 					Fecha de Nacimiento:
-	                <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup"><br><br>
+	                <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup" id = "txtNacimiento"><br><br>
 					
-					<button type = "input" class = "btnGeneral" name = "btnRegistro"> Reg&iacute;strate </button>
+					<button type = "button" class = "btnGeneral" name = "btnRegistro" id = "btnRegistro"> Reg&iacute;strate </button>
 					</form>
 				</div>
 		        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
@@ -105,6 +105,7 @@
 				
 			</div>
 			<div style = "background-color: #66b5ff; margin-top: -55px;"><center> Hecha con <i class = "fa fa-heart" style = "color:red;"></i></center></div>
+			<p id = "locale"></p>
 		</div>
 		<?php
 
@@ -126,6 +127,7 @@
 			$(document).ready(function(){
 				$('#divRegistro').hide();
 				$('.dot').hide();
+				$('#locale').hide();
 				checkWeather();
 			});
 			
@@ -190,6 +192,35 @@
 
 			});
 
+
+			$('#btnRegistro').on('click', function(){
+				alert($('#locale').html());
+
+				var cadenalocalizacion = $('#locale').html().toString();
+				var localizacion = cadenalocalizacion.split("|");
+				localizacion.pop();
+
+
+				if(localizacion.length != 3)
+				{
+					localizacion = ["a", "a", "a"];
+				}
+
+				var formularioRegistro = { Nombre: $('#txtNombre').val(),
+					Numero: $('#txtTelefono').val(),
+					Correo: $('#txtCorreo').val(),
+					bday: $('#txtNacimiento').val(),
+					Edad: $('#txtEdad').val(),
+					Contrasena: $('#txtContra1').val(),
+					localizacion: localizacion
+				};
+
+				$.post('php/registra.php', formularioRegistro, function(e){
+					alert(e);
+				})
+			});
+
+
 			function checaValor(contrasena)
 			{
 				var html = '';
@@ -223,11 +254,9 @@
 					html += '';
 				}
 
-
 				$('#dot2').html(html);
 				$('#dot2').show();
 			}
-
 			function loadWeather(location, woeid) {
 				$.simpleWeather({
 					location: location,
@@ -240,7 +269,7 @@
 						var localizacion = [weather.city, weather.region, weather.country];
 
 						localizacion.forEach(function(element, index, array){
-							$('#localizacion').append('<input type = "hidden" name = "localizacion['+index+']" value = "'+element+'">');
+							$('#locale').append(element+"|");
 						});
 						
 					},
@@ -267,82 +296,5 @@
 
 		</script>
 	</body>
-		<?php
-			
-			if (isset($_REQUEST['btnRegistro']))
-			{
-				
-				$Nombre = $_REQUEST['Nombre'];
-				$Numero = $_REQUEST['Numero'];
-				$Correo = $_REQUEST['Correo'];
-				$Nacimiento = $_REQUEST['bday'];
-				$Edad = $_REQUEST['Edad'];
-				$Pass = $_REQUEST['Contrasena'];
-
-				// arreglo con los 3 valores, ciudad, region y pais, respectivamente en el arreglo
-
-				$localizacion = $_REQUEST['localizacion'];
-				$ciudad = $localizacion[0];
-				$Region = $localizacion[1];
-				$Pais = $localizacion[2];
-				
-				
-
-
-				/* Por si quieres ver los datos que tiene 
-				foreach ($localizacion as $valor) {
-					echo $valor."|";
-				}
-				*/
-
-				
-				
-				$Conexion = mysqli_connect("localhost","root","","tynod");
-				
-				$ID1 = mysqli_query($Conexion, "select count(ID) as ID from usuarios");
-					
-				$NumeroID = mysqli_fetch_array($ID1);				
-
-				
-				$ID = $NumeroID['ID'] + 1;
-				
-				$Uso = false;
-				
-				$Mostrar = mysqli_query($Conexion, "select Correo from usuarios");
-				while ($MostrarDatos = mysqli_fetch_array($Mostrar))
-				{
-
-					
-					if ($MostrarDatos['Correo'] == $Correo)
-					{
-						$Uso = true;
-					}
-					Else
-					{
-						
-						$Uso = false;
-						
-					}					
-				}
-				
-				if ($Uso)
-					{
-						echo "Este correo ya ha sido usado";
-					}
-				Else
-					{
-						$regis = mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad, Ciudad) values ('$Nombre', '$Nacimiento', '$Numero', '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad', '$ciudad')");
-					
-						if(!$regis)
-						{
-							mysqli_query($Conexion, "insert into usuarios (Nombre, Nacimiento, Telefono, Correo, ID, Password, Region, Pais, Edad, Ciudad) values ('$Nombre', '$Nacimiento', 0000, '$Correo', '$ID', '$Pass','$Region','$Pais', '$Edad', '$ciudad')");
-							echo mysqli_error($Conexion);
-						}
-					}
-					
-				mysqli_close($Conexion);
-			}
-			
-		?>
 </html>
 
