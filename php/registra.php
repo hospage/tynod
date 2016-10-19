@@ -35,7 +35,7 @@
 	
 	if ($Uso)
 		{
-			echo "Este correo ya ha sido usado";
+			echo "cnv";
 		}
 	else
 		{

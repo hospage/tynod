@@ -79,3 +79,16 @@ a.buscar
 ::-webkit-input-placeholder {
    color: white;
 }
+
+.divFondo
+{
+	width: 100%;
+	background-color: #003366;
+	margin-top: -15px;
+	margin-left: 0px;
+}
+
+body
+{
+	margin: 0px;
+}

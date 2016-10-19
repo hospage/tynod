@@ -20,6 +20,11 @@
 				</div>
 			</div>
 		</div>
+		<div class = "centro">
+			<div class = "divFondo">
+			yes
+			</div>
+		</div>
 
 		<script>
 			$(document).ready(function(){

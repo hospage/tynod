@@ -25,9 +25,9 @@
 					Numero Telef&oacute;nico:
 					<input type = "text" name = "Numero" placeholder="Opcional" class = "inputTextPopup" id = "txtTelefono"><br><br>
 					Correo:
-					<input type = "text" name = "Correo" class = "inputTextPopup" id = "txtCorreo"><br><br>
+					<input type = "text" name = "Correo" class = "inputTextPopup" id = "txtCorreo"><div class = "dot" id = "avisoCorreo"></div><br><br>
 					Edad: 
-					<input type = "text" name = "Edad" class = "inputTextPopup" id = "txtEdad"><br><br>
+					<input type = "text" name = "Edad" class = "inputTextPopup" id = "txtEdad" maxlength = "2"><br><br>
 					Contrase&ntilde;a:
 					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
 					Confirmar Contrase&ntilde;a:
@@ -128,6 +128,7 @@
 				$('#divRegistro').hide();
 				$('.dot').hide();
 				$('#locale').hide();
+				$('#btnRegistro').hide();
 				checkWeather();
 			});
 			
@@ -172,7 +173,7 @@
 				setTimeout(function() {
                    var contra = $('#txtContra1').val();
                    checaValor(contra);
-               }, 0);
+               }, 1500);
 
 			});
 
@@ -182,7 +183,7 @@
                    var contra1 = $('#txtContra1').val();
                    var contra2 = $('#txtContra2').val();
                    checaIguales(contra1, contra2);
-               }, 0);
+               }, 1500);
 
 			});
 
@@ -215,10 +216,82 @@
 					localizacion: localizacion
 				};
 
-				$.post('php/registra.php', formularioRegistro, function(e){
-					alert(e);
+				$.post('php/registra.php', formularioRegistro, function(callback){
+					console.log(callback);
+					if(callback == "cnv")
+					{
+						$('#avisoCorreo').show();
+						$('#avisoCorreo').html('<i class = "fa fa-circle" style = "color: red;"></i> Este correo ya ha sido usado, ingrese otro');
+					}
 				})
 			});
+
+			$('#txtCorreo').keyup(function() {
+				delay(function(){
+				checaCorreo();
+			}, 1000 );
+			});
+
+			$('.popup').on('click', function(){
+				checaTodos();
+			})
+
+			$('.popup').keyup(function(){
+
+				setTimeout(function() {
+                   checaTodos();
+               }, 0);
+
+			});
+
+			$('#txtNacimiento').on('click', checaTodos());
+
+
+			function checaTodos()
+			{
+				var valores = [$('#txtTelefono').val(), $('#txtNombre').val(), $('#txtEdad').val(), $('#txtNacimiento').val()];
+				var contador = 0;
+				var todosTienenValor = true;
+
+				for(contador = 0; contador < valores.length; contador++)
+				{
+					if(valores[contador] == "")
+					{
+						todosTienenValor = false;
+					}
+				}
+				if(correoValido() && checaValoresIguales($('#txtContra1').val(), $('#txtContra2').val()) && todosTienenValor)
+				{
+					$('#btnRegistro').show();
+				}
+
+			}
+
+			var delay = (function(){
+			var timer = 0;
+			return function(callback, ms){
+				clearTimeout (timer);
+				timer = setTimeout(callback, ms);
+			};
+			})();
+
+			var checaCorreo = function() {
+				var correo = $('#txtCorreo').val();
+				var valido = false;
+
+				if((!correo.includes("@") || !correo.includes(".")) && correo != "")
+				{
+					$('#avisoCorreo').html('<i style = "color:red;" class = "fa fa-circle"></i> Favor de introducir un correo valido');
+					valido = true
+				}
+				else
+				{
+					$('#avisoCorreo').html('');
+				}
+
+				return valido;
+			};
+
 
 
 			function checaValor(contrasena)
@@ -245,18 +318,45 @@
 			function checaIguales(password1, password2)
 			{
 				var html = '';
+				var sonIguales = false;
+
 				if(password1 != password2)
 				{
 					html += '<i class = "fa fa-circle" style = "color: #ff3333;"></i> Las contrase&ntilde;as no coinciden';
+					
 				}
 				else
 				{
-					html += '';
+					if(password1 != "" && password2 != "")
+					{
+						html += '';
+						sonIguales = true;
+					}
 				}
 
 				$('#dot2').html(html);
 				$('#dot2').show();
+
+				return sonIguales;
 			}
+
+			function checaValoresIguales(password1, password2)
+			{
+				var html = '';
+				var sonIguales = false;
+
+				if(password1 == password2)
+				{
+					if(password1 != "" && password2 != "")
+					{
+						html += '';
+						sonIguales = true;
+					}
+				}
+
+				return sonIguales;
+			}
+
 			function loadWeather(location, woeid) {
 				$.simpleWeather({
 					location: location,
@@ -279,6 +379,17 @@
 				});
 			}
 
+			function correoValido()
+			{
+				var correo  = $('#txtCorreo').val();
+
+				if(correo.includes('@') && correo.includes('.'))
+				{
+					return true;
+				}
+				
+				return false;
+			}
 
 			function checkWeather()
 			{
