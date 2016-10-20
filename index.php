@@ -129,6 +129,7 @@
 				$('.dot').hide();
 				$('#locale').hide();
 				$('#btnRegistro').hide();
+				$('#avisoCorreo').show();
 				checkWeather();
 			});
 			
@@ -220,7 +221,6 @@
 					console.log(callback);
 					if(callback == "cnv")
 					{
-						$('#avisoCorreo').show();
 						$('#avisoCorreo').html('<i class = "fa fa-circle" style = "color: red;"></i> Este correo ya ha sido usado, ingrese otro');
 					}
 				})
