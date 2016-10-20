@@ -83,12 +83,23 @@ a.buscar
 .divFondo
 {
 	width: 100%;
-	background-color: #003366;
-	margin-top: -15px;
-	margin-left: 0px;
+	background-color: #1f2e2e;
+	padding: 139px 20px 10px 20px;
 }
 
 body
 {
 	margin: 0px;
+}
+
+.imgPerfil
+{
+	border-radius: 1000px;
+	width: 200px;
+	height: 200px;
+}
+
+#divImg
+{
+	text-align: center;
 }

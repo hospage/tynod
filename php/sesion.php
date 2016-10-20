@@ -18,17 +18,16 @@
 				$_SESSION['Correo'] = $registro['Correo'];	
 				
 				$Ingreso = true;
-				
 			}
 		}
 	}
 	
 	if ($Ingreso)
 	{
-		echo "Ingresado correctamente";
+		echo "y";
 	}
 	else
 	{
-		echo "Rectifique sus datos";
+		echo "n";
 	}
 ?>

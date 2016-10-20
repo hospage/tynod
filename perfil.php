@@ -20,25 +20,36 @@
 				</div>
 			</div>
 		</div>
-		<div class = "centro">
+		<div class = "centro" style = "padding: 0px;">
 			<div class = "divFondo">
-			yes
+				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
+				<div class = "divEstrellas">
+					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
+					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
+					<i class = "fa fa-star fa-2x" id = "estrella3"></i>
+					<i class = "fa fa-star fa-2x" id = "estrella2"></i>
+					<i class = "fa fa-star fa-2x" id = "estrella1"></i>
+				</div>
 			</div>
 		</div>
 
 		<script>
 			$(document).ready(function(){
-				checaLocalizacion();
+				checaLocalizacion(cargaCaja);
 			});
 
-			function cargaLocalizacion(location, woeid) {
+			var cargaCaja = function(weather){
+				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
+				$('.txtBuscar').attr('placeholder', cadena);
+			};
+
+			function cargaLocalizacion(location, funcion) {
 				$.simpleWeather({
 					location: location,
-					woeid: woeid,
+					woeid: undefined,
 					unit: 'c',
 					success: function(weather) {
-						var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
-						$('.txtBuscar').attr('placeholder', cadena);
+						funcion(weather);
 						
 					},
 					error: function(error) {
@@ -47,12 +58,12 @@
 				});
 			}
 
-			function checaLocalizacion()
+			function checaLocalizacion(funcion)
 			{
 				if(navigator.geolocation)
 				{
 					navigator.geolocation.getCurrentPosition(function(position) {
-						cargaLocalizacion(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
+						cargaLocalizacion(position.coords.latitude+','+position.coords.longitude, funcion); //load weather using your lat/lng coordinates
 					});
 				}
 				else

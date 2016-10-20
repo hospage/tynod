@@ -29,9 +29,9 @@
 					Edad: 
 					<input type = "text" name = "Edad" class = "inputTextPopup" id = "txtEdad" maxlength = "2"><br><br>
 					Contrase&ntilde;a:
-					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"> <i class = "fa fa-circle"></i> </div><br><br> 
+					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra1"> <div class = "dot" id = "dot1"></div><br><br> 
 					Confirmar Contrase&ntilde;a:
-					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"> <i class = "fa fa-circle"></i> </div> <br><br>
+					<input type = "password" name = "Contrasena"  class = "inputTextPopup" id = "txtContra2"> <div class = "dot" id = "dot2"></div> <br><br>
 					Ciudad: <div style = "display: inline-block;" id = "localizacion"> </div> <br><br>
 					Fecha de Nacimiento:
 	                <input type="date" name="bday" max="2016-12-31"  class = "inputTextPopup" id = "txtNacimiento"><br><br>
@@ -47,7 +47,7 @@
 		    <div class="popup-inner">
 			    Correo Electr&oacute;nico: <input type="text" name="" class = "inputTextPopup" id = "correo"><br><br>
 			    Contrase&ntilde;a: <input type="password" name="" class = "inputTextPopup" id = "psw"><br><br>
-			    <button type = "submit" class = "btnGeneral" id  = "btnIngresa"> Ingresa </button>
+			    <button type = "submit" class = "btnGeneral" id  = "btnIngresa"> Ingresa </button><div id ="loginErr" class = "dot"></div>
 		        <a class="popup-close" data-popup-close="popup-2" href="#">x</a>
 		    </div>
 		</div>
@@ -126,15 +126,19 @@
 
 			$(document).ready(function(){
 				$('#divRegistro').hide();
-				$('.dot').hide();
 				$('#locale').hide();
 				$('#btnRegistro').hide();
-				$('#avisoCorreo').show();
 				checkWeather();
 			});
 			
 			$('#btnIngresa').on('click', function(){
-				$.post('php/sesion.php', {correo: $('#correo').val(), psw: $('#psw').val()}, function(e){ alert(e);});
+				$.post('php/sesion.php', {correo: $('#correo').val(), psw: $('#psw').val()},
+				function(e){
+					if(e == "n")
+					{
+						$('#loginErr').html('<i class = "fa fa-circle" style = "color: red;"></i> Error en el correo/contrase&ntilde;a');
+					}
+				});
 			});
 
 			 $('[data-popup-open]').on('click', function(e)  {
@@ -155,6 +159,7 @@
 				$('#divRegistro').hide();
 				
 				$('.inputTextPopup').val("");
+				$('.dot').html("");
 		    });
 
 
