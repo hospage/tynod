@@ -307,14 +307,14 @@
 				}
 				
 				if ($Uso)
-					{
-						echo "Este correo ya ha sido usado";
-					}
+				{
+					echo "Este correo ya ha sido usado";
+				}
 				else
-					{
-						mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo')");
-						echo mysqli_error($Conexion);
-					}
+				{
+					mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo')");
+					echo mysqli_error($Conexion);
+				}
 
 				mysqli_close($Conexion);
 			}
