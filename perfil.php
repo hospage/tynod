@@ -8,7 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="css/generalTynod.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
 	</head>
-	<body style = "background-color: #d9d9d9;">
+	<body>
 		<script src = "js/jquery-3.1.0.js"></script>
 		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
 		<div class = "barraMenu">
@@ -18,45 +18,22 @@
 					<input type = "text" class = "txtBuscar" > 
 					<a class = "rmLink buscar" href = "#"><i class = "fa fa-search"></i></a>
 				</div>
-				<div id = "divIcons">
-					<a href = "#" class = "rmLink"><i class = "fa fa-home"></i></a>
-					&nbsp;
-					<a href = "#" class = "rmLink"><i class = "fa fa-cog"></i></a>
-				</div>
 			</div>
 		</div>
-		<div class = "centro" style = "padding: 0px;">
-			<div class = "divFondo">
-				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
-				<div class = "divEstrellas">
-					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella3"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella2"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella1"></i>
-				</div>
-			</div>
-		</div>
-		<div class = "contenedorDatos">
-			<p class = "ftTitulo2">Descripci&oacute;n</p>
-		</div>
+
 		<script>
 			$(document).ready(function(){
-				checaLocalizacion(cargaCaja);
+				checaLocalizacion();
 			});
 
-			var cargaCaja = function(weather){
-				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
-				$('.txtBuscar').attr('placeholder', cadena);
-			};
-
-			function cargaLocalizacion(location, funcion) {
+			function cargaLocalizacion(location, woeid) {
 				$.simpleWeather({
 					location: location,
-					woeid: undefined,
+					woeid: woeid,
 					unit: 'c',
 					success: function(weather) {
-						funcion(weather);
+						var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
+						$('.txtBuscar').attr('placeholder', cadena);
 						
 					},
 					error: function(error) {
@@ -65,12 +42,12 @@
 				});
 			}
 
-			function checaLocalizacion(funcion)
+			function checaLocalizacion()
 			{
 				if(navigator.geolocation)
 				{
 					navigator.geolocation.getCurrentPosition(function(position) {
-						cargaLocalizacion(position.coords.latitude+','+position.coords.longitude, funcion); //load weather using your lat/lng coordinates
+						cargaLocalizacion(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
 					});
 				}
 				else
