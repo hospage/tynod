@@ -123,15 +123,13 @@ body
 .contenedorDatos
 {
 	border: 0.5px solid #00b38f;
-	width: 650px;
+	width: 500px;
 	height: 500px;
-	max-width: 100%;
+	max-width: 90%;
 	padding: 15px;
 	margin: 30px 15px 30px 15px;
 	display: inline-block;
 }
-
-
 
 .ftTitulo2
 {
@@ -147,11 +145,27 @@ body
 	color: #00b38f;
 	background-color: #f2f2f2;
 	border-radius: 20px;
-	text-align: center;
 	outline: none;
 	border: none;
 	margin: inherit;
-	margin-top: -40px;
-	padding: 5px 5px 0px 15px;
-	margin-bottom: -13px;
+}
+
+.buscarPeque
+{
+	margin-top: -35px;
+	margin-bottom: -5px;
+}
+
+.navbar .dropdown-menu:after{
+ display:none;
+}
+
+li.dropdwon
+{
+	display: absolute !important;
+}
+
+ul.dropdwon
+{
+	display: absolute !important;
 }

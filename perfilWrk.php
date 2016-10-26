@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/booty.css">
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="css/perfil.css">
 		<link rel="stylesheet" type="text/css" href="css/generalTynod.css">
@@ -14,7 +14,7 @@
 		<div class = "barraMenu">
 			<div class = "centro">
 				<h4 class = "ftTynod"><img src="logos/LogoLlave.png" class = "imgLogo">TyNod</h4>
-				<div class = "miniBuscar">
+				<div class = "buscarPeque">
 				<center>
 				<button id = "btnBuscar"><i class = "fa fa-search"></i></button>
 				</center>
@@ -23,13 +23,31 @@
 					<input type = "text" class = "txtBuscar" > 
 					<a class = "rmLink buscar" href = "#"><i class = "fa fa-search"></i></a>
 				</div>
-				
-
 				<div id = "divIcons">
-					<a href = "#" class = "rmLink"><i class = "fa fa-home"></i></a>
-					&nbsp;
-					<a href = "#" class = "rmLink"><i class = "fa fa-cog"></i></a>
+					<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <a href = "#" class = "rmLink"><i class = "fa fa-home"></i></a> </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+    </ul>
+  </div>
+		
+					
+
+					<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <a href = "#" class = "rmLink"><i class = "fa fa-cog"></i></a> </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+    </ul>
+  </div>
 				</div>
+
+              
+
+           
 			</div>
 		</div>
 		<div class = "centro" style = "padding: 0px;">
@@ -70,15 +88,26 @@
 
 			function escondeCajaBuscar()
 			{
-				if($(window).width() < 600)
+				var anchoVentana = $(window).width();
+
+				if(anchoVentana < 600)
 				{
 					$('.divBuscar').hide();
-					$('#btnBuscar').show();
+					$('.buscarPeque').show();
 				}
 				else
 				{
 					$('.divBuscar').show();
-					$('#btnBuscar').hide();
+					$('.buscarPeque').hide();
+				}
+
+				if(anchoVentana < 1080)
+				{
+					$('.contenedorDatos').css('width', '1000px');
+				}
+				else
+				{
+					$('.contenedorDatos').css('width', '650px');
 				}
 			}
 
@@ -87,6 +116,21 @@
 				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
 				$('.txtBuscar').attr('placeholder', cadena);
 			};
+
+			var isOpen = true;
+
+			$('.dropdown').on('click', function(){
+				if(isOpen)
+				{
+					$('.dropdown').addClass('open');
+				}
+				else
+				{
+					$('.dropdown').removeClass('open');
+				}
+
+				isOpen = !isOpen;
+			})
 
 			function cargaLocalizacion(location, funcion) {
 				$.simpleWeather({
