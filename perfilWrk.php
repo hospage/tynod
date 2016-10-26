@@ -14,10 +14,17 @@
 		<div class = "barraMenu">
 			<div class = "centro">
 				<h4 class = "ftTynod"><img src="logos/LogoLlave.png" class = "imgLogo">TyNod</h4>
+				<div class = "miniBuscar">
+				<center>
+				<button id = "btnBuscar"><i class = "fa fa-search"></i></button>
+				</center>
+				</div>
 				<div class = "divBuscar">
 					<input type = "text" class = "txtBuscar" > 
 					<a class = "rmLink buscar" href = "#"><i class = "fa fa-search"></i></a>
 				</div>
+				
+
 				<div id = "divIcons">
 					<a href = "#" class = "rmLink"><i class = "fa fa-home"></i></a>
 					&nbsp;
@@ -37,13 +44,44 @@
 				</div>
 			</div>
 		</div>
-		<div class = "contenedorDatos">
-			<p class = "ftTitulo2">Descripci&oacute;n</p>
+		<div class = "centro" style = "padding: 0px;">
+			<center>
+			<?php
+				$contador = 1;
+				$vals = ['Descripci&oacute;n', 'Horarios'];
+
+				foreach ($vals as $valor) 
+				{
+					echo '<div class = "contenedorDatos"><p class = "ftTitulo2">'.$valor.'</div>';
+				}
+			?>
+			</center>
 		</div>
 		<script>
 			$(document).ready(function(){
 				checaLocalizacion(cargaCaja);
+				escondeCajaBuscar();
 			});
+
+			$(window).resize(function(){
+
+				escondeCajaBuscar();
+			});
+
+			function escondeCajaBuscar()
+			{
+				if($(window).width() < 600)
+				{
+					$('.divBuscar').hide();
+					$('#btnBuscar').show();
+				}
+				else
+				{
+					$('.divBuscar').show();
+					$('#btnBuscar').hide();
+				}
+			}
+
 
 			var cargaCaja = function(weather){
 				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;

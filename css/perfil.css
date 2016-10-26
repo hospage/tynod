@@ -43,10 +43,6 @@
 	margin-bottom: -13px;
 }
 
-.btnBuscar
-{
-	background-color: #00b38f;
-}
 
 a.buscar
 {
@@ -127,12 +123,15 @@ body
 .contenedorDatos
 {
 	border: 0.5px solid #00b38f;
-	width: 800px;
+	width: 650px;
 	height: 500px;
-	max-width: 45%;
+	max-width: 100%;
 	padding: 15px;
-	margin: 30px;
+	margin: 30px 15px 30px 15px;
+	display: inline-block;
 }
+
+
 
 .ftTitulo2
 {
@@ -140,4 +139,19 @@ body
 	text-align: center;
 	font-weight: 50;
 	font-size: 30px;
+}
+
+#btnBuscar
+{
+	text-align: center; 
+	color: #00b38f;
+	background-color: #f2f2f2;
+	border-radius: 20px;
+	text-align: center;
+	outline: none;
+	border: none;
+	margin: inherit;
+	margin-top: -40px;
+	padding: 5px 5px 0px 15px;
+	margin-bottom: -13px;
 }
