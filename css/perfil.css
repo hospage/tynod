@@ -192,3 +192,11 @@ ul {
 	margin-left: 10px;
 	width: 90%;
 }
+
+.ftNombre
+{
+	color: #f2f2f2;
+	font-size: 30px;
+	text-align: center;
+	margin-top: 30px;
+}

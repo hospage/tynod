@@ -46,6 +46,7 @@
 		<div class = "centro" style = "padding: 0px;">
 			<div class = "divFondo">
 				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
+				<p class = "ftNombre"></p>
 				<div class = "divEstrellas">
 					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
 					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
@@ -77,10 +78,11 @@
 				checaLocalizacion(cargaCaja);
 				escondeCajaBuscar();
 				escondeElementos(['tipoUsr', 'showUpBuscarC']);
+				tipoUsr = $('.tipoUsr').html();
+				cargaDatosUsuario();
 			});
 
 			$(window).resize(function(){
-
 				escondeCajaBuscar();
 			});
 
@@ -96,6 +98,7 @@
 					$('.showUpBuscarC').hide();
 				}
 				
+				console.log(tipoUsr);
 			});
 
 			function escondeCajaBuscar()
@@ -141,6 +144,15 @@
 				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
 				$('.txtBuscar').attr('placeholder', cadena);
 			};
+
+			function cargaDatosUsuario()
+			{
+				$.post('php/obtenerDatos.php', {var: 'foo'}, function(callback){
+					var datos = callback.split(",");
+					console.log(datos);
+					$('.ftNombre').html(datos[0]);
+				});
+			}
 
 			function obtenerUsr()
 			{

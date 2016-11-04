@@ -17,6 +17,7 @@
 				$_SESSION['nombre'] = $registro['Nombre'];
 				$_SESSION['correo'] = $registro['Correo'];
 				$_SESSION['tipoUsuario'] = 'usuarios';
+				$_SESSION['prof'] = 'ns';
 				
 				$Ingreso = true;
 			}
@@ -37,6 +38,7 @@
 				$_SESSION['nombre'] = $registro['Nombre'];
 				$_SESSION['correo'] = $registro['Correo'];
 				$_SESSION['tipoUsuario'] = 'prestadores';
+				$_SESSION['prof'] = $registro['Profesion'];
 				
 				$ingresoTrabajador = true;
 			}
