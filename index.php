@@ -138,6 +138,19 @@
 					{
 						$('#loginErr').html('<i class = "fa fa-circle" style = "color: red;"></i> Error en el correo/contrase&ntilde;a');
 					}
+					else
+					{
+						$.post('php/obtenerTipoUsr.php', {var: 'foo'}, function(callback){
+							if(callback == "prestadores")
+							{
+								window.location = 'perfilWrk.php';
+							}
+							else
+							{
+								window.location = 'perfilUsr.php';
+							}
+						});
+					}
 				});
 			});
 
@@ -229,6 +242,7 @@
 						$('#avisoCorreo').html('<i class = "fa fa-circle" style = "color: red;"></i> Este correo ya ha sido usado, ingrese otro');
 					}
 				})
+
 			});
 
 			$('#txtCorreo').keyup(function() {

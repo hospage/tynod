@@ -23,31 +23,6 @@
 					<input type = "text" class = "txtBuscar" > 
 					<a class = "rmLink buscar" href = "#"><i class = "fa fa-search"></i></a>
 				</div>
-				<div id = "divIcons">
-					<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <a href = "#" class = "rmLink"><i class = "fa fa-home"></i></a> </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">HTML</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
-    </ul>
-  </div>
-		
-					
-
-					<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <a href = "#" class = "rmLink"><i class = "fa fa-cog"></i></a> </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">HTML</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
-    </ul>
-  </div>
-				</div>
-
-              
-
-           
 			</div>
 		</div>
 		<div class = "centro" style = "padding: 0px;">

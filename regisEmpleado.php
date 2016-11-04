@@ -290,7 +290,7 @@
 					
 				$NumeroID = mysqli_fetch_array($ID1);				
 
-				
+				$Uso = false;
 				$ID = $NumeroID['ID'] + 1;
 				
 				
@@ -312,7 +312,7 @@
 				}
 				else
 				{
-					mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo')");
+					mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo, Contrasena) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo', '$pass')");
 					echo mysqli_error($Conexion);
 				}
 

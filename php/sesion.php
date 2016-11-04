@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
     $correo = $_POST['correo'];
 	$contrasena = $_POST['psw'];
 	$Ingreso = false;	
@@ -13,16 +13,38 @@
 		{
 			if ($registro['Password'] == $contrasena)
 			{
-				$_SESSION['ID'] = $registro['ID'];
-				$_SESSION['Nombre'] = $registro['Nombre'];
-				$_SESSION['Correo'] = $registro['Correo'];	
+				$_SESSION['id'] = $registro['ID'];
+				$_SESSION['nombre'] = $registro['Nombre'];
+				$_SESSION['correo'] = $registro['Correo'];
+				$_SESSION['tipoUsuario'] = 'usuarios';
 				
 				$Ingreso = true;
 			}
 		}
 	}
+
+	$ingresoTrabajador = false;
+
+	$consulta = mysqli_query($conexion,"select * from prestadores");
+
+	while ($registro=mysqli_fetch_array($consulta))
+	{
+		if ($registro['Correo'] == $correo)
+		{
+			if ($registro['Contrasena'] == $contrasena)
+			{
+				$_SESSION['id'] = $registro['ID'];
+				$_SESSION['nombre'] = $registro['Nombre'];
+				$_SESSION['correo'] = $registro['Correo'];
+				$_SESSION['tipoUsuario'] = 'prestadores';
+				
+				$ingresoTrabajador = true;
+			}
+		}
+	}
+
 	
-	if ($Ingreso)
+	if ($Ingreso || $ingresoTrabajador)
 	{
 		echo "y";
 	}
