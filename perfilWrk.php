@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
 	</head>
 	<body style = "background-color: #d9d9d9;">
+		<p class = "tipoUsr"></p>
 		<script src = "js/jquery-3.1.0.js"></script>
 		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
 		<div class = "barraMenu">
@@ -23,6 +24,23 @@
 					<input type = "text" class = "txtBuscar" > 
 					<a class = "rmLink buscar" href = "#"><i class = "fa fa-search"></i></a>
 				</div>
+				<ul style = "float: right; color: black; margin-top: -30px; text-align: right; font-size: 30px;">
+					<li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class = "fa fa-cog" style = "color: #f2f2f2;"></i></a>
+					    <ul class="dropdown-menu ">
+					        <li><a href="#" class = "rmLink" >Configuraci&oacute;n de la cuenta</a></li>
+					        <li><a class = "rmLink" href="#"> Salir </a></li>
+					    </ul>
+					</li>
+				</ul>
+				<div id = "divIcons">
+					<a href = "#" class = "rmLink"><i class = "fa fa-home"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class = "showUpBuscarC">
+			<div class = "centro" style = "padding: 5px;">
+				<i class = "fa fa-search"></i><input type = "text" class = "txtShowUp">
 			</div>
 		</div>
 		<div class = "centro" style = "padding: 0px;">
@@ -51,14 +69,33 @@
 			</center>
 		</div>
 		<script>
+			var tipoUsr = obtenerUsr();
+			var isOpen = true;
+			var btnShow = false;
+
 			$(document).ready(function(){
 				checaLocalizacion(cargaCaja);
 				escondeCajaBuscar();
+				escondeElementos(['tipoUsr', 'showUpBuscarC']);
 			});
 
 			$(window).resize(function(){
 
 				escondeCajaBuscar();
+			});
+
+			$('#btnBuscar').on('click', function(){
+				btnShow = !btnShow;
+
+				if(btnShow)
+				{
+					$('.showUpBuscarC').show();
+				}
+				else
+				{
+					$('.showUpBuscarC').hide();
+				}
+				
 			});
 
 			function escondeCajaBuscar()
@@ -74,6 +111,7 @@
 				{
 					$('.divBuscar').show();
 					$('.buscarPeque').hide();
+					$('.showUpBuscarC').hide();
 				}
 
 				if(anchoVentana < 1080)
@@ -86,14 +124,6 @@
 				}
 			}
 
-
-			var cargaCaja = function(weather){
-				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
-				$('.txtBuscar').attr('placeholder', cadena);
-			};
-
-			var isOpen = true;
-
 			$('.dropdown').on('click', function(){
 				if(isOpen)
 				{
@@ -105,7 +135,28 @@
 				}
 
 				isOpen = !isOpen;
-			})
+			});
+			
+			var cargaCaja = function(weather){
+				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
+				$('.txtBuscar').attr('placeholder', cadena);
+			};
+
+			function obtenerUsr()
+			{
+				$.post('php/obtenerTipoUsr.php', {var: 'foo'}, function(callback){
+					$('.tipoUsr').html(callback);
+				});
+
+				return $('.tipoUsr').html();
+			}
+
+			function escondeElementos(elementos)
+			{
+				elementos.forEach(function(elemento){
+					$('.'+elemento).hide();
+				});
+			}
 
 			function cargaLocalizacion(location, funcion) {
 				$.simpleWeather({
