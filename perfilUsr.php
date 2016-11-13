@@ -44,8 +44,12 @@
 				<i class = "fa fa-search"></i><input type = "text" class = "txtShowUp">
 			</div>
 		</div>
+		
+		
 		<div class = "centro" style = "padding: 0px;">
+			<img src="logos/PortadaDefault.png">
 			<div class = "divFondo">
+				
 				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
 				<p class = "ftNombre" id = "nombre"></p>
 				<div class = "divEstrellas">
@@ -55,14 +59,15 @@
 					<i class = "fa fa-star fa-2x" id = "estrella2"></i>
 					<i class = "fa fa-star fa-2x" id = "estrella1"></i>
 				</div>
+				<div class = "portaBotones">	
+					<button class = "btnModificar">
+					<a href = "#" class = "rmLink"><i class = "fa fa-pencil"></i> Modifica tu perfil </a>
+					</button>
+					<button class = "btnSubirImg"><i class = "fa fa-picture-o"></i> Modifica tu foto </button>
+				</div>
 			</div>
 		</div>
-		<center>
-			<button class = "btnModificar">
-				<a href = "#" class = "rmLink"><i class = "fa fa-pencil"></i> Modifica tu perfil </a>
-			</button>
-			<button class = "btnSubirImg"><i class = "fa fa-picture-o"></i> Modifica tu foto </button>
-		</center>
+
 		<div class = "centro" style = "padding: 0px;">
 			<center>
 			<?php
