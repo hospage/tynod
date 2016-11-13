@@ -45,8 +45,10 @@
 
 		<div class="popup" data-popup="popup-2">
 		    <div class="popup-inner">
+		    	<form>
 			    Correo Electr&oacute;nico: <input type="text" name="" class = "inputTextPopup" id = "correo"><br><br>
 			    Contrase&ntilde;a: <input type="password" name="" class = "inputTextPopup" id = "psw"><br><br>
+			    </form>
 			    <button type = "submit" class = "btnGeneral" id  = "btnIngresa"> Ingresa </button><div id ="loginErr" class = "dot"></div>
 		        <a class="popup-close" data-popup-close="popup-2" href="#">x</a>
 		    </div>
@@ -140,14 +142,15 @@
 					}
 					else
 					{
-						$.post('php/obtenerTipoUsr.php', {var: 'foo'}, function(callback){
-							if(callback == "prestadores")
+						$.post('php/obtenerDatos.php', {var: 'foo'}, function(callback){
+							var data = callback.split(",");
+							if(data[3] == "prestadores")
 							{
-								window.location = 'perfilWrk.php';
+								window.location = 'perfilWrk.php?id='+data[2]+'&nombre='+data[0];
 							}
 							else
 							{
-								window.location = 'perfilUsr.php';
+								window.location = 'perfilUsr.php?id='+data[2]+'&nombre='+data[0];
 							}
 						});
 					}

@@ -1,4 +1,4 @@
 <?php
 	session_start();
-	echo $_SESSION['nombre'].",".$_SESSION['correo'].",".$_SESSION['id'];
+	echo $_SESSION['nombre'].",".$_SESSION['correo'].",".$_SESSION['id'].",".$_SESSION['tipoUsuario'];
 ?>

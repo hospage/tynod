@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
 	</head>
 	<body style = "background-color: #d9d9d9;">
+		
 		<p class = "tipoUsr"></p>
 		<script src = "js/jquery-3.1.0.js"></script>
 		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
@@ -29,12 +30,12 @@
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class = "fa fa-cog" style = "color: #f2f2f2;"></i></a>
 					    <ul class="dropdown-menu ">
 					        <li><a href="#" class = "rmLink" >Configuraci&oacute;n de la cuenta</a></li>
-					        <li><a class = "rmLink" href="#"> Salir </a></li>
+					        <li><a class = "rmLink" href="#" id = "linkSalir"> Salir </a></li>
 					    </ul>
 					</li>
 				</ul>
 				<div id = "divIcons">
-					<a href = "#" class = "rmLink"><i class = "fa fa-home"></i></a>
+					<a href = "#" class = "rmLink" id = "linkHome"><i class = "fa fa-home"></i></a>
 				</div>
 			</div>
 		</div>
@@ -46,7 +47,7 @@
 		<div class = "centro" style = "padding: 0px;">
 			<div class = "divFondo">
 				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
-				<p class = "ftNombre"></p>
+				<p class = "ftNombre" id = "nombre"></p>
 				<div class = "divEstrellas">
 					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
 					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
@@ -56,6 +57,26 @@
 				</div>
 			</div>
 		</div>
+		<center>
+			<button class = "btnModificar">
+				<a href = "#" class = "rmLink"><i class = "fa fa-pencil"></i> Modifica tu perfil </a>
+			</button>
+			<button class = "btnSubirImg"><i class = "fa fa-picture-o"></i> Modifica tu foto </button>
+		</center>
+		<div class = "centro" style = "padding: 0px;">
+			<center>
+			<?php
+				$contador = 1;
+				$vals = ['Descripci&oacute;n', 'Horarios'];
+
+				foreach ($vals as $valor) 
+				{
+					echo '<div class = "contenedorDatos"><p class = "ftTitulo2">'.$valor.'</div>';
+				}
+			?>
+			</center>
+		</div>
+
 		<script>
 			var tipoUsr = obtenerUsr();
 			var isOpen = true;
@@ -88,6 +109,29 @@
 				console.log(tipoUsr);
 			});
 
+			$('#linkHome').on('click', function(){
+				window.location = 'perfilWrk.php';
+			})
+
+			$('.dropdown').on('click', function(){
+				if(isOpen)
+				{
+					$('.dropdown').addClass('open');
+				}
+				else
+				{
+					$('.dropdown').removeClass('open');
+				}
+
+				isOpen = !isOpen;
+			});
+
+			$('#linkSalir').on('click', function(){
+				$.get('php/terminate.php', function(){
+					window.location = "index.php";
+				})
+			});
+
 			function escondeCajaBuscar()
 			{
 				var anchoVentana = $(window).width();
@@ -114,18 +158,6 @@
 				}
 			}
 
-			$('.dropdown').on('click', function(){
-				if(isOpen)
-				{
-					$('.dropdown').addClass('open');
-				}
-				else
-				{
-					$('.dropdown').removeClass('open');
-				}
-
-				isOpen = !isOpen;
-			});
 			
 			var cargaCaja = function(weather){
 				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
@@ -136,8 +168,8 @@
 			{
 				$.post('php/obtenerDatos.php', {var: 'foo'}, function(callback){
 					var datos = callback.split(",");
-					console.log(datos);
-					$('.ftNombre').html(datos[0]);
+					$('#nombre').html(datos[0]);
+					
 				});
 			}
 
@@ -186,5 +218,6 @@
 				}
 			}
 		</script>
+
 	</body>
 </html>

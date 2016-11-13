@@ -12,6 +12,33 @@
 		<p class = "tipoUsr"></p>
 		<script src = "js/jquery-3.1.0.js"></script>
 		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
+		<script src = "js/bootstrap.js" ></script>
+		<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+		  <!-- Modal content-->
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal"><i class = "fa fa-times"></i></button>
+		      <h4 class="modal-title" class = "display-4">Cambio de foto de perfil</h4>
+		    </div>
+		    <div class="modal-body">
+		      <div class = "muestraFoto">
+		      	<img class = "imgNueva">
+		      </div>
+		      <form action="upImg.php" method="post" enctype="multipart/form-data">
+				    Select image to upload:
+				    <input type="file" name="fileToUpload" id="fileToUpload">
+				    <input type="submit" value="Upload Image" name="submit">
+				</form>
+		    </div>
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		    </div>
+		    </div>
+		  </div>
+		</div>
+		</div>
 		<div class = "barraMenu">
 			<div class = "centro">
 				<h4 class = "ftTynod"><img src="logos/LogoLlave.png" class = "imgLogo">TyNod</h4>
@@ -27,14 +54,15 @@
 				<ul style = "float: right; color: black; margin-top: -30px; text-align: right; font-size: 30px;">
 					<li class="dropdown">
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class = "fa fa-cog" style = "color: #f2f2f2;"></i></a>
-					    <ul class="dropdown-menu ">
+					    <ul class="dropdown-menu">
 					        <li><a href="#" class = "rmLink" >Configuraci&oacute;n de la cuenta</a></li>
-					        <li><a class = "rmLink" href="#"> Salir </a></li>
+					        <li><a class = "rmLink" href="#" id = "linkSalir"> Salir </a></li>
 					    </ul>
+
 					</li>
 				</ul>
 				<div id = "divIcons">
-					<a href = "#" class = "rmLink"><i class = "fa fa-home"></i></a>
+					<a href = "#" class = "rmLink" id = "linkHome"><i class = "fa fa-home"></i></a>
 				</div>
 			</div>
 		</div>
@@ -46,7 +74,8 @@
 		<div class = "centro" style = "padding: 0px;">
 			<div class = "divFondo">
 				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
-				<p class = "ftNombre"></p>
+				<p class = "ftNombre" id = "nombre"></p>
+				<p class = "ftProfesion" id = "idProf"></p>
 				<div class = "divEstrellas">
 					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
 					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
@@ -56,6 +85,16 @@
 				</div>
 			</div>
 		</div>
+		<div class="dropdown" style="margin-bottom:10px;">
+        
+      </div>
+
+		<center>
+			<button class = "btnModificar">
+				<i class = "fa fa-pencil"></i> Modifica tu perfil
+			</button>
+			<button class = "btnSubirImg" data-toggle="modal" data-target="#myModal"><i class = "fa fa-picture-o"></i> Modifica tu foto</button>
+		</center>
 		<div class = "centro" style = "padding: 0px;">
 			<center>
 			<?php
@@ -69,6 +108,7 @@
 			?>
 			</center>
 		</div>
+
 		<script>
 			var tipoUsr = obtenerUsr();
 			var isOpen = true;
@@ -77,7 +117,7 @@
 			$(document).ready(function(){
 				checaLocalizacion(cargaCaja);
 				escondeCajaBuscar();
-				escondeElementos(['tipoUsr', 'showUpBuscarC']);
+				escondeElementos(['tipoUsr', 'showUpBuscarC', 'muestraFoto']);
 				tipoUsr = $('.tipoUsr').html();
 				cargaDatosUsuario();
 			});
@@ -100,6 +140,33 @@
 				
 				console.log(tipoUsr);
 			});
+
+			$('#linkHome').on('click', function(){
+				window.location = 'perfilWrk.php';
+			});
+
+			$('#linkSalir').on('click', function(){
+				$.get('php/terminate.php', function(){
+					window.location = "index.php";
+				})
+			});
+
+			/* codigo obtenido de jsfiddle */
+		    $(":file").change(function () {
+		        if (this.files && this.files[0]) {
+		            var reader = new FileReader();
+		            reader.onload = imageIsLoaded;
+		            reader.readAsDataURL(this.files[0]);
+		        }
+		    });
+			
+
+			function imageIsLoaded(e) {
+				$('.muestraFoto').show();
+			    $('.imgNueva').attr('src', e.target.result);
+			};
+
+			/* fin de codigo recopilado */
 
 			function escondeCajaBuscar()
 			{
@@ -127,18 +194,6 @@
 				}
 			}
 
-			$('.dropdown').on('click', function(){
-				if(isOpen)
-				{
-					$('.dropdown').addClass('open');
-				}
-				else
-				{
-					$('.dropdown').removeClass('open');
-				}
-
-				isOpen = !isOpen;
-			});
 			
 			var cargaCaja = function(weather){
 				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
@@ -147,10 +202,21 @@
 
 			function cargaDatosUsuario()
 			{
-				$.post('php/obtenerDatos.php', {var: 'foo'}, function(callback){
+				$.post('php/obtenerDatos.php', function(callback){
 					var datos = callback.split(",");
-					console.log(datos);
-					$('.ftNombre').html(datos[0]);
+					$('#nombre').html(datos[0]);
+					var pass = {select: 'Profesion', tabla: 'prestadores', where: 'id', valor: datos[2], tipoVal: 'numerico'};
+					$.post('php/consulta.php', {datos: pass} , function(nyes){
+						console.log(nyes);
+						console.log('asdf');
+						$('#idProf').html(nyes);
+					});
+					var paraImagen = {select: 'foto', tabla: 'prestadores', where: 'id', valor: datos[2], tipoVal: 'numerico'};
+					$.post('php/consulta.php', {datos: paraImagen}, function(back){
+						console.log(back);
+
+						$('.imgPerfil').attr('src', 'imagenes/'+back);
+					});
 				});
 			}
 
@@ -199,5 +265,6 @@
 				}
 			}
 		</script>
+
 	</body>
 </html>

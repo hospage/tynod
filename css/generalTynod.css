@@ -36,3 +36,25 @@ body
 	color: inherit !important;
 }
 
+.btnGeneral
+{
+	color: #f2f2f2;
+	background-color: #00b38f;
+	border-radius: 10px;
+	box-shadow: 0px 5px #004d3d;
+	position: relative;
+	padding: 7px 12px 7px 12px;
+	border:none;
+	outline: none;
+}
+
+.btnGeneral:active
+{
+	top: 4px;
+	box-shadow: none;
+}
+
+.btnGeneral:active
+{
+	outline: none;
+}
