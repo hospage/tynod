@@ -72,10 +72,11 @@
 			</div>
 		</div>
 		<div class = "centro" style = "padding: 0px;">
+			<img src="logos/PortadaDefault.png">
 			<div class = "divFondo">
+				
 				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
 				<p class = "ftNombre" id = "nombre"></p>
-				<p class = "ftProfesion" id = "idProf"></p>
 				<div class = "divEstrellas">
 					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
 					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
@@ -83,18 +84,18 @@
 					<i class = "fa fa-star fa-2x" id = "estrella2"></i>
 					<i class = "fa fa-star fa-2x" id = "estrella1"></i>
 				</div>
+				<div class = "portaBotones">	
+					<button class = "btnModificar">
+					<a href = "#" class = "rmLink"><i class = "fa fa-pencil"></i> Modifica tu perfil </a>
+					</button>
+					<button class = "btnSubirImg" data-toggle="modal" data-target="#myModal"><i class = "fa fa-picture-o"></i> Modifica tu foto</button>
+				</div>
 			</div>
 		</div>
 		<div class="dropdown" style="margin-bottom:10px;">
         
       </div>
 
-		<center>
-			<button class = "btnModificar">
-				<i class = "fa fa-pencil"></i> Modifica tu perfil
-			</button>
-			<button class = "btnSubirImg" data-toggle="modal" data-target="#myModal"><i class = "fa fa-picture-o"></i> Modifica tu foto</button>
-		</center>
 		<div class = "centro" style = "padding: 0px;">
 			<center>
 			<?php

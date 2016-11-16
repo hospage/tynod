@@ -34,10 +34,7 @@
 			    $uploadOk = 0;
 			}
 			// Check file size
-			if ($_FILES["fileToUpload"]["size"] > 500000) {
-			    echo "Sorry, your file is too large.";
-			    $uploadOk = 0;
-			}
+
 			// Allow certain file formats
 			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 			&& $imageFileType != "gif" ) {
@@ -101,12 +98,12 @@
 			$consulta = mysqli_query($conexion, $sql) or die(mysqli_error($conexion));
 			$arregloConDatos = mysqli_fetch_array($consulta);
 			echo "<br>}".$arregloConDatos[0]."<br>";
-
+			/*
 			if($arregloConDatos[0] != 'defaultUserLogo')
 			{
 				unlink('imagenes/'.$arregloConDatos[0]);
 			}
-
+*/
 			$sql = 'UPDATE '.$_SESSION['tipoUsuario'].' SET foto = "'.$nombreNuevo.'" WHERE ID = '.$_SESSION['id'];
 			
 			mysqli_query($conexion, $sql);
@@ -117,6 +114,7 @@
 			}
 			else
 			{
+				
 				if($_SESSION['tipoUsuario'] == "prestadores")
 				{
 					echo '<script> window.location = "perfilWrk.php" </script>';

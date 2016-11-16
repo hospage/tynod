@@ -73,6 +73,38 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mensajes`
+--
+
+CREATE TABLE IF NOT EXISTS `mensajes` (
+  `Fecha` text NOT NULL,
+  `Envia` varchar(100) NOT NULL,
+  `Recibe` varchar(100) NOT NULL,
+  `Mensaje` varchar(255) NOT NULL,
+  `Hora` text NOT NULL,
+  `ID` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------.
+
+--
+-- Table structure for table `solicitudes`
+--
+
+CREATE TABLE IF NOT EXISTS `solicitudes` (
+  `ID` int(5) NOT NULL,
+  `Envia` varchar(30) NOT NULL,
+  `Recibe` varchar(30) NOT NULL,
+  `Aceptado` varchar(30) NOT NULL,
+  `Mensaje` varchar(30) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Hora` text NOT NULL,
+  `Dia` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
