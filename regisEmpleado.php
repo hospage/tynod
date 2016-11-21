@@ -37,11 +37,34 @@
 					</div>
 				</div>
 				<div class = "entrada">
-					<div class = "dato">
-						<p class = "ftDato"> Profesi&oacute;n: </p> 
+					<div class = "dato" style = "position: relative; top: -50px; margin-right: 50px;">
+						<p class = "ftDato" > Profesi&oacute;n: </p> 
 					</div>
 					<div class = "caja">
-						<input type = "text" name = "Profesion" class = "txtIngreso" id = "caja3">
+						<!--<input type = "text" name = "Profesion" class = "txtIngreso" id = "caja3">-->
+						<!--
+						<input type="checkbox" name="chkPlomero" value = "plomero">Plomero
+						<br>
+						<input type="checkbox" name="chkElectricista" value = "electricista">Electricista
+						<br>
+						<input type="checkbox" name="chkCarpintero" value = "carpintero">Carpintero
+						<br>
+						<input type="checkbox" name="chkAlbanil" value = "alba">Alba&ntilde;il
+						<br>
+						<input type="checkbox" name="chkCerrajero">Cerrajero
+						<br>
+						-->
+						<?php
+							$profesiones = ['Plomero', 'Electricista', 'Carpintero', 'Alba&ntilde;il', 'Cerrajero'];
+							$profesionesMinusculas = ['plomero', 'electricista', 'carpintero', 'alba&ntilde', 'cerrajero'];
+							$indice = 0;
+
+							for($indice = 0; $indice < sizeof($profesiones); $indice++)
+							{
+								echo '<input type = "checkbox" name = "chkProfesiones['.$indice.']" value = "'.$profesionesMinusculas[$indice].'">'.$profesiones[$indice]."<br>";
+							}
+
+						?>
 					</div>
 				</div>
 				<div class = "entrada">
@@ -269,7 +292,7 @@
 				
 				$nombre = $_REQUEST['Nombre'];
 				$apellido = $_REQUEST['Apellido'];
-				$profesion = $_REQUEST['Profesion'];
+				$profesiones = $_REQUEST['chkProfesiones'];
 				$rfc = $_REQUEST['RFC'];
 				$pass = $_REQUEST['Contrasena1'];
 				$cp = $_REQUEST['CP'];
@@ -278,11 +301,35 @@
 				$localizacion = $_REQUEST['localizacion'];
 				$disponibilidad = "---";
 				$correo = $_REQUEST['Correo'];
+				$profesionesJuntadas = $profesiones[0];
+				$indice = 0;
+				$profs = [];
+
+				foreach($profesiones as $pr => $nyes)
+				{
+					$profs[$indice] = $nyes;
+					echo $nyes;
+					$indice++;
+				}
+
+				$profesiones = $profs;
+
+				echo "<br>";
+
+				if(sizeof($profesiones) > 1)
+				{
+					for($indice = 1; $indice < sizeof($profesiones); $indice++)
+					{
+						$profesionesJuntadas = $profesionesJuntadas.", ".$profesiones[$indice];
+					}		
+				}
+
+				echo $profesionesJuntadas;
 				
 				$localizacion = $_REQUEST['localizacion'];
 				$ciudad = $localizacion[0];
 				$region = $localizacion[1];
-				$pais = $localizacion[2];
+				$pais = $localizacion[2];				
 				
 				$Conexion = mysqli_connect("localhost","root","","tynod");
 				
@@ -298,12 +345,10 @@
 				while ($MostrarDatos = mysqli_fetch_array($Mostrar))
 				{
 
-					
 					if ($MostrarDatos['Correo'] == $correo)
 					{
 						$Uso = true;
-					}
-				
+					}	
 				}
 				
 				if ($Uso)
@@ -312,11 +357,13 @@
 				}
 				else
 				{
-					mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo, Contrasena) values ('$ID', '$profesion', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo', '$pass')");
+					mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo, Contrasena) values ('$ID', '$profesionesJuntadas', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo', '$pass')");
 					echo mysqli_error($Conexion);
 				}
 
 				mysqli_close($Conexion);
+				
+				echo '<script> window.location = "index.php"</script>';
 			}
 			
 		?>
