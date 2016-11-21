@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+	<?php
+		session_start();
+		if($_SESSION['tipoUsuario'] == "usuarios")
+		{
+			echo '<script>window.location = "perfilUsr.php"</script>';
+		}
+	?>
 <html>
 	<head>
 		<title></title>
@@ -72,11 +79,12 @@
 			</div>
 		</div>
 		<div class = "centro" style = "padding: 0px;">
-			<img src="logos/PortadaDefault.png">
+			<img src="logos/PortadaDefault.png" style="max-width: 100%; padding: 0; margin-top: -2px;">
 			<div class = "divFondo">
 				
 				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
 				<p class = "ftNombre" id = "nombre"></p>
+				<p class = "ftProfesion" id = "idProfesion">
 				<div class = "divEstrellas">
 					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
 					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
@@ -86,25 +94,31 @@
 				</div>
 				<div class = "portaBotones">	
 					<button class = "btnModificar">
-					<a href = "#" class = "rmLink"><i class = "fa fa-pencil"></i> Modifica tu perfil </a>
+					<i class = "fa fa-pencil"></i> Modifica tu perfil
 					</button>
 					<button class = "btnSubirImg" data-toggle="modal" data-target="#myModal"><i class = "fa fa-picture-o"></i> Modifica tu foto</button>
 				</div>
 			</div>
 		</div>
-		<div class="dropdown" style="margin-bottom:10px;">
+		<center>
+			<div class = "divGN">
+				<button class = "btnGuardar" id = "btnGuardar"><i class = "fa fa-save"></i> Guardar Cambios</button>
+				<button class = "btnNoGuardar" id = "btnNoGuardar"><i class = "fa fa-reply-all"></i> Salir </button>
+			</div>
+		</center>
         
       </div>
 
 		<div class = "centro" style = "padding: 0px;">
 			<center>
 			<?php
-				$contador = 1;
+				$contador = 0;
 				$vals = ['Descripci&oacute;n', 'Horarios'];
+				$textareas = ['Desc', 'Horarios'];
 
-				foreach ($vals as $valor) 
+				for($contador = 0; $contador < sizeof($vals); $contador++)
 				{
-					echo '<div class = "contenedorDatos"><p class = "ftTitulo2">'.$valor.'</div>';
+					echo '<div class = "contenedorDatos"><p class = "ftTitulo2">'.$vals[$contador].'</p> <p id = "p'.$textareas[$contador].'" class = "pEdits"></p> <textarea class = "perfil" id = "txt'.$textareas[$contador].'"></textarea></div>';
 				}
 			?>
 			</center>
@@ -114,11 +128,12 @@
 			var tipoUsr = obtenerUsr();
 			var isOpen = true;
 			var btnShow = false;
+			var muestraBtns = false;
 
 			$(document).ready(function(){
 				checaLocalizacion(cargaCaja);
 				escondeCajaBuscar();
-				escondeElementos(['tipoUsr', 'showUpBuscarC', 'muestraFoto']);
+				escondeElementos(['tipoUsr', 'showUpBuscarC', 'muestraFoto', 'perfil', 'divGN']);
 				tipoUsr = $('.tipoUsr').html();
 				cargaDatosUsuario();
 			});
@@ -152,6 +167,31 @@
 				})
 			});
 
+			$('.btnModificar').on('click', function(){
+				muestraBtns = !muestraBtns;
+				if(muestraBtns)
+				{
+					$('.divGN').fadeIn();
+					$('.perfil').show();
+					$('.pEdits').hide();
+				}
+				else
+				{
+					escondeEdits();
+				}
+			});
+
+			$('#btnNoGuardar').on('click', function(){
+				escondeEdits();
+				muestraBtns = !muestraBtns;
+			});
+
+			$('#btnGuardar').on('click', function(){
+				$.post('php/guardaData.php', {descripcion: $('#txtDesc').val(), horarios: $('#txtHorarios').val()}, function(callback){
+					window.location = 'perfilWrk.php';
+				})
+			})
+
 			/* codigo obtenido de jsfiddle */
 		    $(":file").change(function () {
 		        if (this.files && this.files[0]) {
@@ -168,6 +208,13 @@
 			};
 
 			/* fin de codigo recopilado */
+
+			function escondeEdits()
+			{
+				$('.divGN').fadeOut();
+				$('.perfil').hide();
+				$('.pEdits').show();
+			}
 
 			function escondeCajaBuscar()
 			{
@@ -210,7 +257,7 @@
 					$.post('php/consulta.php', {datos: pass} , function(nyes){
 						console.log(nyes);
 						console.log('asdf');
-						$('#idProf').html(nyes);
+						$('#idProfesion').html(nyes);
 					});
 					var paraImagen = {select: 'foto', tabla: 'prestadores', where: 'id', valor: datos[2], tipoVal: 'numerico'};
 					$.post('php/consulta.php', {datos: paraImagen}, function(back){
@@ -218,8 +265,25 @@
 
 						$('.imgPerfil').attr('src', 'imagenes/'+back);
 					});
+					console.log(datos[3]);
+					
+					var txtDesc = {select: 'descripcion', tabla: datos[3], where: 'id', valor: datos[2], tipoVal: 'numerico'};
+					
+					$.post('php/consulta.php', {datos: txtDesc}, function(cback){
+						$('#txtDesc').html(cback);
+						$('#pDesc').html(cback);
+					});
+
+					var txtHorarios = {select: 'horarios', tabla: datos[3], where: 'id', valor: datos[2], tipoVal: 'numerico'};
+					
+					$.post('php/consulta.php', {datos: txtHorarios}, function(cback){
+						$('#txtHorarios').html(cback);
+						$('#pHorarios').html(cback);
+					});
 				});
 			}
+
+
 
 			function obtenerUsr()
 			{

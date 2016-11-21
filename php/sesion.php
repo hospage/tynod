@@ -14,7 +14,7 @@
 			if ($registro['Password'] == $contrasena)
 			{
 				$_SESSION['id'] = $registro['ID'];
-				$_SESSION['nombre'] = $registro['Nombre'];
+				$_SESSION['nombre'] = $registro['Nombre']." ".$registro['Apellido'];
 				$_SESSION['correo'] = $registro['Correo'];
 				$_SESSION['tipoUsuario'] = 'usuarios';
 				$_SESSION['prof'] = 'ns';
@@ -35,7 +35,7 @@
 			if ($registro['Contrasena'] == $contrasena)
 			{
 				$_SESSION['id'] = $registro['ID'];
-				$_SESSION['nombre'] = $registro['Nombre'];
+				$_SESSION['nombre'] = $registro['Nombre']." ".$registro['Apellido'];;
 				$_SESSION['correo'] = $registro['Correo'];
 				$_SESSION['tipoUsuario'] = 'prestadores';
 				$_SESSION['prof'] = $registro['Profesion'];

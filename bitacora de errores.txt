@@ -1,0 +1,4 @@
+---------------------------------------------------- Error 1 -------------------------------------------------
+
+	En el perfil (ambos perfilWrk y perfilUsr) al hacer resize a la pagina, la imagen del portada se queda mas grande, no
+	se achica a el tamaño de la pagina

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2016 a las 04:57:14
+-- Tiempo de generación: 21-11-2016 a las 07:29:26
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -25,12 +25,27 @@ USE `tynod`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mensajes`
+--
+
+CREATE TABLE IF NOT EXISTS `mensajes` (
+  `Fecha` text NOT NULL,
+  `Envia` varchar(100) NOT NULL,
+  `Recibe` varchar(100) NOT NULL,
+  `Mensaje` varchar(255) NOT NULL,
+  `Hora` text NOT NULL,
+  `ID` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `prestadores`
 --
 
 CREATE TABLE IF NOT EXISTS `prestadores` (
   `ID` int(5) NOT NULL,
-  `Profesion` varchar(15) NOT NULL,
+  `Profesion` varchar(35) NOT NULL,
   `Nombre` varchar(30) NOT NULL,
   `Apellido` varchar(30) NOT NULL,
   `RFC` varchar(14) NOT NULL,
@@ -44,6 +59,8 @@ CREATE TABLE IF NOT EXISTS `prestadores` (
   `Correo` text NOT NULL,
   `Contrasena` varchar(20) NOT NULL,
   `foto` varchar(20) DEFAULT 'defaultUserLogo.png',
+  `descripcion` longtext NOT NULL,
+  `horarios` longtext NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -51,9 +68,8 @@ CREATE TABLE IF NOT EXISTS `prestadores` (
 -- Volcado de datos para la tabla `prestadores`
 --
 
-INSERT INTO `prestadores` (`ID`, `Profesion`, `Nombre`, `Apellido`, `RFC`, `CP`, `Direccion`, `Region`, `Pais`, `Celular`, `Disponibilidad`, `Ciudad`, `Correo`, `Contrasena`, `foto`) VALUES
-(1, 'asdfasdf', 'viefasd', 'asdfasdf', 'asdfasdfadf', 1231, 'asdfasdf', ' BC', 'Mexico', 123123123, '---', 'Tijuana', 'yoyomama@hmami.com', 'cosa1234', 'jHbHVT5cGHsSX6.jpg'),
-(2, 'cecec', 'vivi', 'dsfsdf', 'dfsdf', 2321, 'ee', ' BC', 'Mexico', 123123, '---', 'Tijuana', 'ppop@gm.icm', 'yoyomama69', 'defaultUserLogo.png');
+INSERT INTO `prestadores` (`ID`, `Profesion`, `Nombre`, `Apellido`, `RFC`, `CP`, `Direccion`, `Region`, `Pais`, `Celular`, `Disponibilidad`, `Ciudad`, `Correo`, `Contrasena`, `foto`, `descripcion`, `horarios`) VALUES
+(1, 'plomero, carpintero', 'Victor', 'Hernandez', '12323', 123, 'yoyomama', ' BC', 'Mexico', 23123, '---', 'Tijuana', 'hospage@hotmail.com', 'cosa1234', 'RvJOKM68578.jpg', 'moshi mohsi', 'nyeeeeeeees');
 
 -- --------------------------------------------------------
 
@@ -68,38 +84,6 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
   `Aceptado` varchar(30) NOT NULL,
   `Mensaje` varchar(30) NOT NULL,
   `Fecha` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mensajes`
---
-
-CREATE TABLE IF NOT EXISTS `mensajes` (
-  `Fecha` text NOT NULL,
-  `Envia` varchar(100) NOT NULL,
-  `Recibe` varchar(100) NOT NULL,
-  `Mensaje` varchar(255) NOT NULL,
-  `Hora` text NOT NULL,
-  `ID` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------.
-
---
--- Table structure for table `solicitudes`
---
-
-CREATE TABLE IF NOT EXISTS `solicitudes` (
-  `ID` int(5) NOT NULL,
-  `Envia` varchar(30) NOT NULL,
-  `Recibe` varchar(30) NOT NULL,
-  `Aceptado` varchar(30) NOT NULL,
-  `Mensaje` varchar(30) NOT NULL,
-  `Fecha` date NOT NULL,
-  `Hora` text NOT NULL,
-  `Dia` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -120,6 +104,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `Telefono` bigint(15) NOT NULL,
   `Ciudad` text NOT NULL,
   `foto` varchar(20) DEFAULT 'defaultUserLogo.png',
+  `horarios` longtext NOT NULL,
+  `descripcion` longtext NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -127,8 +113,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`ID`, `Nombre`, `Correo`, `Password`, `Region`, `Pais`, `Edad`, `Nacimiento`, `Telefono`, `Ciudad`, `foto`) VALUES
-(1, 'victor', 'vicoloco@live.com.mx', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-08', 312312, 'Tijuana', 'defaultUserLogo.png');
+INSERT INTO `usuarios` (`ID`, `Nombre`, `Correo`, `Password`, `Region`, `Pais`, `Edad`, `Nacimiento`, `Telefono`, `Ciudad`, `foto`, `horarios`, `descripcion`) VALUES
+(1, 'victor', 'vicoloco@live.com.mx', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-08', 312312, 'Tijuana', 'defaultUserLogo.png', '', ''),
+(2, 'Victor Hern', 'vicoloco1@live.com.mx', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-16', 12323, 'Tijuana', 'defaultUserLogo.png', 'i like burritos', 'yoyomama'),
+(3, 'Victor Hern', 'vicoloco2@live.com.mx', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-16', 12323, 'Tijuana', 'defaultUserLogo.png', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
