@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2016 a las 07:29:26
+-- Tiempo de generación: 22-11-2016 a las 06:46:39
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -116,7 +116,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`ID`, `Nombre`, `Correo`, `Password`, `Region`, `Pais`, `Edad`, `Nacimiento`, `Telefono`, `Ciudad`, `foto`, `horarios`, `descripcion`) VALUES
 (1, 'victor', 'vicoloco@live.com.mx', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-08', 312312, 'Tijuana', 'defaultUserLogo.png', '', ''),
 (2, 'Victor Hern', 'vicoloco1@live.com.mx', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-16', 12323, 'Tijuana', 'defaultUserLogo.png', 'i like burritos', 'yoyomama'),
-(3, 'Victor Hern', 'vicoloco2@live.com.mx', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-16', 12323, 'Tijuana', 'defaultUserLogo.png', '', '');
+(3, 'Victor Hern', 'vicoloco2@live.com.mx', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-16', 12323, 'Tijuana', 'defaultUserLogo.png', '', ''),
+(4, 'Victor', 'cosa@live.com', 'cosa1234', ' BC', 'Mexico', 12, '2016-11-02', 1232, 'Tijuana', 'defaultUserLogo.png', '', ''),
+(5, 'asdf', 'vicoloco3@live.com.mx', 'asdfasdf', ' BC', 'Mexico', 12, '2016-11-08', 12312, 'Tijuana', 'defaultUserLogo.png', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
