@@ -357,8 +357,7 @@
 				}
 				else
 				{
-					mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo, Contrasena) values ('$ID', '$profesionesJuntadas', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo', '$pass')");
-					echo mysqli_error($Conexion);
+					mysqli_query($Conexion, "insert into prestadores (ID, Profesion, Nombre, Apellido, RFC, CP,Direccion, Region, Pais, Celular, Disponibilidad, Ciudad, Correo, Contrasena) values ('$ID', '$profesionesJuntadas', '$nombre', '$apellido', '$rfc', '$cp', '$direccion', '$region','$pais','$numero', '$disponibilidad', '$ciudad', '$correo', '$pass')") or die(mysqli_error($Conexion));
 				}
 
 				mysqli_close($Conexion);
