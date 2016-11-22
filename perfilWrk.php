@@ -55,8 +55,9 @@
 				</center>
 				</div>
 				<div class = "divBuscar">
-					<input type = "text" class = "txtBuscar" > 
-					<a class = "rmLink buscar" href = "#"><i class = "fa fa-search"></i></a>
+					<form action = "busqueda.php" method = "post"><input type = "text" name = "buscar" class = "txtBuscar" > 
+					<button type = "submit" class = "buscar"><i class = "fa fa-search"></i></button>
+					</form>
 				</div>
 				<ul style = "float: right; color: black; margin-top: -30px; text-align: right; font-size: 30px;">
 					<li class="dropdown">
@@ -65,10 +66,10 @@
 					        <li><a href="#" class = "rmLink" >Configuraci&oacute;n de la cuenta</a></li>
 					        <li><a class = "rmLink" href="#" id = "linkSalir"> Salir </a></li>
 					    </ul>
-
 					</li>
 				</ul>
 				<div id = "divIcons">
+				<a href = "mensajes.php" class = "rmLink mensajes"><i class = "fa fa-send"></i></a>
 					<a href = "#" class = "rmLink" id = "linkHome"><i class = "fa fa-home"></i></a>
 				</div>
 			</div>
@@ -256,8 +257,24 @@
 					var pass = {select: 'Profesion', tabla: 'prestadores', where: 'id', valor: datos[2], tipoVal: 'numerico'};
 					$.post('php/consulta.php', {datos: pass} , function(nyes){
 						console.log(nyes);
-						console.log('asdf');
-						$('#idProfesion').html(nyes);
+						var profesiones = nyes.split(', ');
+						var indice = 0;
+						var profesionesArregladas = [];
+						var alb = "";
+
+						for(indice = 0; indice < profesiones.length ; indice++)
+						{
+							if(profesiones[indice].includes('alb'))
+							{
+								profesionesArregladas.push("alba&ntilde;il");
+							}
+							else
+							{	
+								profesionesArregladas.push(profesiones[indice]);
+							}
+						}
+
+						$('#idProfesion').html(profesionesArregladas.join(", "));
 					});
 					var paraImagen = {select: 'foto', tabla: 'prestadores', where: 'id', valor: datos[2], tipoVal: 'numerico'};
 					$.post('php/consulta.php', {datos: paraImagen}, function(back){

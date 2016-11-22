@@ -56,7 +56,7 @@
 						-->
 						<?php
 							$profesiones = ['Plomero', 'Electricista', 'Carpintero', 'Alba&ntilde;il', 'Cerrajero'];
-							$profesionesMinusculas = ['plomero', 'electricista', 'carpintero', 'alba&ntilde', 'cerrajero'];
+							$profesionesMinusculas = ['plomero', 'electricista', 'carpintero', 'alba&ntilde;il', 'cerrajero'];
 							$indice = 0;
 
 							for($indice = 0; $indice < sizeof($profesiones); $indice++)
@@ -362,7 +362,7 @@
 
 				mysqli_close($Conexion);
 				
-				echo '<script> window.location = "index.php"</script>';
+				echo '<script> window.location = "index.php?nuevo=true"</script>';
 			}
 			
 		?>

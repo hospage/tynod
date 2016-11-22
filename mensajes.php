@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html>
-	<?php
-		session_start();
-		if($_SESSION['tipoUsuario'] == "prestadores")
-		{
-			echo '<script>window.location = "perfilWrk.php" </script>';
-		}
-	?>
 	<head>
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/booty.css">
@@ -14,12 +7,16 @@
 		<link rel="stylesheet" type="text/css" href="css/perfil.css">
 		<link rel="stylesheet" type="text/css" href="css/generalTynod.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="css/busqueda.css">
 	</head>
+	<?php
+		session_start();
+		$nombrez = $_SESSION['nombre'];
+		$idz = $_SESSION['id'];
+		echo "<script> var nombre = \"$nombrez\"; var id = $idz </script>";
+	?>
 	<body style = "background-color: #d9d9d9;">
 		<p class = "tipoUsr"></p>
-		<script src = "js/jquery-3.1.0.js"></script>
-		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
-		<script src = "js/bootstrap.js" ></script>
 		<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 
@@ -27,17 +24,11 @@
 		  <div class="modal-content">
 		    <div class="modal-header">
 		      <button type="button" class="close" data-dismiss="modal"><i class = "fa fa-times"></i></button>
-		      <h4 class="modal-title" class = "display-4">Cambio de foto de perfil</h4>
+		      <h4 class="modal-title" class = "display-4">Enviar mensaje a </h4>
 		    </div>
 		    <div class="modal-body">
-		      <div class = "muestraFoto">
-		      	<img class = "imgNueva">
-		      </div>
-		      <form action="upImg.php" method="post" enctype="multipart/form-data">
-				    Select image to upload:
-				    <input type="file" name="fileToUpload" id="fileToUpload">
-				    <input type="submit" value="Upload Image" name="submit">
-				</form>
+		    	<textarea class = "form-control" id = "mensaje"></textarea>
+		    	<button type = "button" class = "btn btn-default" id = "btnMandar" style = "margin-top: 15px"> Enviar <i class = "fa fa-send"></i> </button>
 		    </div>
 		    <div class="modal-footer">
 		      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -45,7 +36,9 @@
 		    </div>
 		  </div>
 		</div>
-		</div>
+		<script src = "js/jquery-3.1.0.js"></script>
+		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
+		<script src = "js/bootstrap.js" ></script>
 		<div class = "barraMenu">
 			<div class = "centro">
 				<h4 class = "ftTynod"><img src="logos/LogoLlave.png" class = "imgLogo">TyNod</h4>
@@ -70,59 +63,16 @@
 					</li>
 				</ul>
 				<div id = "divIcons">
-				<a href = "mensajes.php" class = "rmLink mensajes"><i class = "fa fa-send"></i></a>
+					<a href = "mensajes.php" class = "rmLink mensajes"><i class = "fa fa-send"></i></a>
 					<a href = "#" class = "rmLink" id = "linkHome"><i class = "fa fa-home"></i></a>
 				</div>
 			</div>
 		</div>
+		
 		<div class = "showUpBuscarC">
 			<div class = "centro" style = "padding: 5px;">
 				<i class = "fa fa-search"></i><input type = "text" class = "txtShowUp">
 			</div>
-		</div>
-		<div class = "centro" style = "padding: 0px;">
-			<img src="logos/PortadaDefault.png" style="max-width: 100%; padding: 0; margin-top: -2px;">
-			<div class = "divFondo">
-				
-				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
-				<p class = "ftNombre" id = "nombre"></p>
-				<div class = "divEstrellas">
-					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella3"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella2"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella1"></i>
-				</div>
-				<div class = "portaBotones">	
-					<button class = "btnModificar">
-					<i class = "fa fa-pencil"></i> Modifica tu perfil
-					</button>
-					<button class = "btnSubirImg" data-toggle="modal" data-target="#myModal"><i class = "fa fa-picture-o"></i> Modifica tu foto</button>
-				</div>
-			</div>
-		</div>
-		<center>
-			<div class = "divGN">
-				<button class = "btnGuardar" id = "btnGuardar"><i class = "fa fa-save"></i> Guardar Cambios</button>
-				<button class = "btnNoGuardar" id = "btnNoGuardar"><i class = "fa fa-reply-all"></i> Salir </button>
-			</div>
-		</center>
-        
-      </div>
-
-		<div class = "centro" style = "padding: 0px;">
-			<center>
-			<?php
-				$contador = 0;
-				$vals = ['Descripci&oacute;n', 'Horarios'];
-				$textareas = ['Desc', 'Horarios'];
-
-				for($contador = 0; $contador < sizeof($vals); $contador++)
-				{
-					echo '<div class = "contenedorDatos"><p class = "ftTitulo2">'.$vals[$contador].'</p> <p id = "p'.$textareas[$contador].'" class = "pEdits"></p> <textarea class = "perfil" id = "txt'.$textareas[$contador].'"></textarea></div>';
-				}
-			?>
-			</center>
 		</div>
 
 		<script>
@@ -130,13 +80,13 @@
 			var isOpen = true;
 			var btnShow = false;
 			var muestraBtns = false;
+			var idSender = -1;
 
 			$(document).ready(function(){
 				checaLocalizacion(cargaCaja);
 				escondeCajaBuscar();
 				escondeElementos(['tipoUsr', 'showUpBuscarC', 'muestraFoto', 'perfil', 'divGN']);
 				tipoUsr = $('.tipoUsr').html();
-				cargaDatosUsuario();
 			});
 
 			$(window).resize(function(){
@@ -168,54 +118,7 @@
 				})
 			});
 
-			$('.btnModificar').on('click', function(){
-				muestraBtns = !muestraBtns;
-				if(muestraBtns)
-				{
-					$('.divGN').fadeIn();
-					$('.perfil').show();
-					$('.pEdits').hide();
-				}
-				else
-				{
-					escondeEdits();
-				}
-			});
 
-			$('#btnNoGuardar').on('click', function(){
-				escondeEdits();
-				muestraBtns = !muestraBtns;
-			});
-
-			$('#btnGuardar').on('click', function(){
-				$.post('php/guardaData.php', {descripcion: $('#txtDesc').val(), horarios: $('#txtHorarios').val()}, function(callback){
-					window.location = 'perfilUsr.php';
-				})
-			})
-
-			/* codigo obtenido de jsfiddle */
-		    $(":file").change(function () {
-		        if (this.files && this.files[0]) {
-		            var reader = new FileReader();
-		            reader.onload = imageIsLoaded;
-		            reader.readAsDataURL(this.files[0]);
-		        }
-		    });
-			
-
-			function imageIsLoaded(e) {
-				$('.muestraFoto').show();
-			    $('.imgNueva').attr('src', e.target.result);
-			};
-
-			/* fin de codigo recopilado */
-
-			function escondeEdits()
-			{
-				$('.divGN').fadeOut();
-				$('.perfil').hide();
-				$('.pEdits').show();
-			}
 
 			function escondeCajaBuscar()
 			{
@@ -248,41 +151,6 @@
 				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
 				$('.txtBuscar').attr('placeholder', cadena);
 			};
-
-			function cargaDatosUsuario()
-			{
-				$.post('php/obtenerDatos.php', function(callback){
-					var datos = callback.split(",");
-					$('#nombre').html(datos[0]);
-					var paraImagen = {select: 'foto', tabla: datos[3], where: 'id', valor: datos[2], tipoVal: 'numerico'};
-					$.post('php/consulta.php', {datos: paraImagen}, function(back){
-						console.log(back);
-						if(back != "defaultUserLogo.png")
-						{
-							$('.imgPerfil').attr('src', 'imagenes/'+back);
-							alert('asdf');
-						}
-						
-					});
-					console.log(datos[3]);
-					
-					var txtDesc = {select: 'descripcion', tabla: datos[3], where: 'id', valor: datos[2], tipoVal: 'numerico'};
-					
-					$.post('php/consulta.php', {datos: txtDesc}, function(cback){
-						$('#txtDesc').html(cback);
-						
-						$('#pDesc').html(cback);
-					});
-
-					var txtHorarios = {select: 'horarios', tabla: datos[3], where: 'id', valor: datos[2], tipoVal: 'numerico'};
-					
-					$.post('php/consulta.php', {datos: txtHorarios}, function(cback){
-						$('#txtHorarios').html(cback);
-						$('#pHorarios').html(cback);
-					});
-				});
-			}
-
 
 
 			function obtenerUsr()

@@ -1,0 +1,64 @@
+div.ctTrabajador
+{	
+	background-color: #b3cccc;
+	color: black;
+	margin: 30px;
+	width: 700px;
+	max-width: 100%;
+	padding: 20px 10px 20px 10px;
+	border-radius: 7px;
+	overflow: hidden;
+}
+
+img.trabajador
+{
+	width: 50px;
+	height: 50px;
+	border:none;
+	border-radius: 500px;
+	float: left;
+	display: inline-block;
+}
+
+p.datos
+{
+	display: inline-block;
+	color: #f2f2f2;
+	float: left;
+	margin-left: 20px;
+	text-align: justify;
+}
+
+a.mensaje
+{
+	display: inline-block;
+	color: #f2f2f2;
+}
+
+a.perfil
+{
+	display: inline-block;
+	color: #f2f2f2;
+}
+
+a.msg
+{
+	color: #334d4d;
+	float: right;
+	position:  relative;
+	font-size: 30px;
+	transition-duration: 0.5s;
+}
+
+a.msg:hover
+{
+	color: white;
+}
+
+i{
+	transition-duration: 0.5s;
+}
+
+i:hover{
+	color:white;
+}

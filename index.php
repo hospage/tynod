@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<head>
+	<header>
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="css/tynod.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
 	<title> Bienvenido a TyNod </title>
-	</head>
+		<script src = "js/jquery-3.1.0.js"></script>
+		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
+		<script src = "js/bootstrap.js" ></script>
+	</header>
 	<body>
+		
+		<div class="modal" id="modalGracias" role="dialog">
+			<div class="modal-dialog">
+
+			  <!-- Modal content-->
+			  <div class="modal-content">
+			    <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal"><i class = "fa fa-times"></i></button>
+			      <h4 class="modal-title" class = "display-4">Gracias por registrarte, ahora s&oacute;lo ocupas ingresar</h4>
+			    </div>
+			    <div class="modal-body">
+			    	<center><i class = "fa fa-smile-o fa-5x"></i></center>
+			    </div>
+			    <div class="modal-footer">
+			      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			    </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
 		<div class="popup" data-popup="popup-1">
 		    <div class="popup-inner">
 			    <div id = "divEscoge">
@@ -53,9 +76,6 @@
 		        <a class="popup-close" data-popup-close="popup-2" href="#">x</a>
 		    </div>
 		</div>
-
-		<script src = "js/jquery-3.1.0.js"></script>
-		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
 		<div id = "container-fluid">
 			<div id = "inicio">
 			<div id = "registro"></div>
@@ -121,6 +141,16 @@
 				}
 			}
 
+		?>
+
+		<?php
+			if(isset($_GET['nuevo']))
+			{
+				if($_GET['nuevo'] == true)
+				{
+					echo "<script> $('#modalGracias').modal('show'); </script>";
+				}
+			}
 		?>
 		<script type="text/javascript">
 			var unit = 'c';
@@ -217,8 +247,6 @@
 
 
 			$('#btnRegistro').on('click', function(){
-				alert($('#locale').html());
-
 				var cadenalocalizacion = $('#locale').html().toString();
 				var localizacion = cadenalocalizacion.split("|");
 				localizacion.pop();
@@ -244,6 +272,10 @@
 					{
 						$('#avisoCorreo').html('<i class = "fa fa-circle" style = "color: red;"></i> Este correo ya ha sido usado, ingrese otro');
 					}
+					else
+					{
+						window.location = "index.php?nuevo=true";
+					}
 				});
 
 			});
@@ -265,6 +297,8 @@
                }, 0);
 
 			});
+
+
 
 			$('#txtNacimiento').on('click', checaTodos());
 

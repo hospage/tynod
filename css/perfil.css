@@ -44,12 +44,17 @@
 }
 
 
-a.buscar
+.buscar
 {
-	color: white;
 	display: inline-block;
 	float: right;
 	padding-right: 10px;
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	border: none;
+	cursor:pointer;
+	overflow: hidden;
+	color: black;
 }
 
 .divBuskar
@@ -279,6 +284,7 @@ ul {
 
 .modal {
   text-align: center;
+
 }
 
 @media screen and (min-width: 768px) { 
@@ -415,4 +421,10 @@ textarea.perfil
 	color: black;
 	text-align: justify !important;
 	font-size: 20px;
+}
+
+a.mensajes
+{
+	font-size: 25px;
+	margin-right: 35px;
 }

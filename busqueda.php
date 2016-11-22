@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-	<?php
-		session_start();
-		
-		if(isset($_GET['id']))
-		{
-			$aidi = $_GET['id'];
-			$nombre = $_GET['nombre'];
-			echo "<script> var id = \"$aidi\"; var nombrePr = \"$nombre\"; </script>";
-		}
-
-	?>
 <html>
 	<head>
 		<title></title>
@@ -18,12 +7,16 @@
 		<link rel="stylesheet" type="text/css" href="css/perfil.css">
 		<link rel="stylesheet" type="text/css" href="css/generalTynod.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="css/busqueda.css">
 	</head>
+	<?php
+		session_start();
+		$nombrez = $_SESSION['nombre'];
+		$idz = $_SESSION['id'];
+		echo "<script> var nombre = \"$nombrez\"; var id = $idz </script>";
+	?>
 	<body style = "background-color: #d9d9d9;">
 		<p class = "tipoUsr"></p>
-		<script src = "js/jquery-3.1.0.js"></script>
-		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
-		<script src = "js/bootstrap.js" ></script>
 		<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 
@@ -31,17 +24,11 @@
 		  <div class="modal-content">
 		    <div class="modal-header">
 		      <button type="button" class="close" data-dismiss="modal"><i class = "fa fa-times"></i></button>
-		      <h4 class="modal-title" class = "display-4">Cambio de foto de perfil</h4>
+		      <h4 class="modal-title" class = "display-4">Enviar mensaje a </h4>
 		    </div>
 		    <div class="modal-body">
-		      <div class = "muestraFoto">
-		      	<img class = "imgNueva">
-		      </div>
-		      <form action="upImg.php" method="post" enctype="multipart/form-data">
-				    Select image to upload:
-				    <input type="file" name="fileToUpload" id="fileToUpload">
-				    <input type="submit" value="Upload Image" name="submit">
-				</form>
+		    	<textarea class = "form-control" id = "mensaje"></textarea>
+		    	<button type = "button" class = "btn btn-default" id = "btnMandar" style = "margin-top: 15px"> Enviar <i class = "fa fa-send"></i> </button>
 		    </div>
 		    <div class="modal-footer">
 		      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -49,7 +36,9 @@
 		    </div>
 		  </div>
 		</div>
-		</div>
+		<script src = "js/jquery-3.1.0.js"></script>
+		<script src = "js/geo/jquery.simpleWeather.min.js"></script>
+		<script src = "js/bootstrap.js" ></script>
 		<div class = "barraMenu">
 			<div class = "centro">
 				<h4 class = "ftTynod"><img src="logos/LogoLlave.png" class = "imgLogo">TyNod</h4>
@@ -70,9 +59,11 @@
 					        <li><a href="#" class = "rmLink" >Configuraci&oacute;n de la cuenta</a></li>
 					        <li><a class = "rmLink" href="#" id = "linkSalir"> Salir </a></li>
 					    </ul>
+
 					</li>
 				</ul>
 				<div id = "divIcons">
+					<a href = "mensajes.php" class = "rmLink mensajes"><i class = "fa fa-send"></i></a>
 					<a href = "#" class = "rmLink" id = "linkHome"><i class = "fa fa-home"></i></a>
 				</div>
 			</div>
@@ -82,54 +73,52 @@
 				<i class = "fa fa-search"></i><input type = "text" class = "txtShowUp">
 			</div>
 		</div>
-		<div class = "centro" style = "padding: 0px;">
-			<img src="logos/PortadaDefault.png" style="max-width: 100%; padding: 0; margin-top: -2px;">
-			<div class = "divFondo">
-				
-				<div id = "divImg"><img src = "logos/defaultUserLogo.png" class = "imgPerfil" alt = "imagen del usuario"/></div>
-				<p class = "ftNombre" id = "nombre"></p>
-				<p class = "ftProfesion" id = "idProfesion">
-				<div class = "divEstrellas">
-					<i class = "fa fa-star fa-2x" id = "estrella5"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella4"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella3"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella2"></i>
-					<i class = "fa fa-star fa-2x" id = "estrella1"></i>
-				</div>
-				<div class = "portaBotones">	
-				</div>
-			</div>
-		</div>
-        
-      </div>
-
-		<div class = "centro" style = "padding: 0px;">
-			<center>
+		<center id = "trabajadores">
 			<?php
-				$contador = 0;
-				$vals = ['Descripci&oacute;n', 'Horarios'];
-				$textareas = ['Desc', 'Horarios'];
 
-				for($contador = 0; $contador < sizeof($vals); $contador++)
+				$busqueda = $_POST['buscar'];
+
+				$conexion = mysqli_connect('localhost', 'root', '', 'tynod');
+
+				$sql = 'SELECT ciudad FROM prestadores WHERE ID = "'.$_SESSION['id'].'"';
+				$consulta = mysqli_query($conexion, $sql);
+				$fetch = mysqli_fetch_array($consulta);
+				$localidad = $fetch[0];
+
+				$sql = "select * from prestadores WHERE ciudad = \"$localidad\"";
+				$consulta = mysqli_query($conexion, $sql);
+
+
+
+				if($consulta)
 				{
-					echo '<div class = "contenedorDatos"><p class = "ftTitulo2">'.$vals[$contador].'</p> <p id = "p'.$textareas[$contador].'" class = "pEdits"></p> <textarea class = "perfil" id = "txt'.$textareas[$contador].'"></textarea></div>';
+					while($datos = mysqli_fetch_array($consulta))
+					{
+						$profesiones = $datos['Profesion'];
+
+						if(strpos($profesiones, $busqueda) !== false)
+						{
+							echo '<div class = "ctTrabajador"> <img class = "trabajador" src = "imagenes/'.$datos['foto'].'" > <p class = "datos">Nombre:<a href = "perfil.php?id='.$datos['ID'].'&nombre='.$datos['Nombre']." ".$datos['Apellido'].'"> '.$datos['Nombre']." ".$datos['Apellido'].'</a><br> Profesion/es:'.$datos['Profesion'].' </p> <a data-toggle="modal" data-target="#myModal" href = "#" class = "rmLink msg" id = "p'.$datos['ID'].'"> <i class = "fa fa-pencil" id = "p'.$datos['ID'].'"></i> </a></div>';
+						}
+					}
 				}
+
+				
 			?>
-			</center>
-		</div>
+		</center>
 
 		<script>
 			var tipoUsr = obtenerUsr();
 			var isOpen = true;
 			var btnShow = false;
 			var muestraBtns = false;
+			var idSender = -1;
 
 			$(document).ready(function(){
 				checaLocalizacion(cargaCaja);
 				escondeCajaBuscar();
 				escondeElementos(['tipoUsr', 'showUpBuscarC', 'muestraFoto', 'perfil', 'divGN']);
 				tipoUsr = $('.tipoUsr').html();
-				cargaDatosUsuario();
 			});
 
 			$(window).resize(function(){
@@ -152,7 +141,7 @@
 			});
 
 			$('#linkHome').on('click', function(){
-				window.location = 'perfilWrk.php';
+				window.location = 'perfilUsr.php';
 			});
 
 			$('#linkSalir').on('click', function(){
@@ -161,54 +150,27 @@
 				})
 			});
 
-			$('.btnModificar').on('click', function(){
-				muestraBtns = !muestraBtns;
-				if(muestraBtns)
-				{
-					$('.divGN').fadeIn();
-					$('.perfil').show();
-					$('.pEdits').hide();
-				}
-				else
-				{
-					escondeEdits();
-				}
+			$('.msg').click(function(e){
+				console.log(e.target.id);
+				var idz = e.target.id[1];
+				idSender = idz;
+				var paraNombre = {select: 'nombre', tabla: 'prestadores', where: 'id', valor: idz, tipoVal: 'numerico'};
+				$.post('php/consulta.php', {datos: paraNombre}, function(back){
+					var apellido = {select: 'apellido', tabla: 'prestadores', where: 'id', valor: idz, tipoVal: 'numerico'};
+					$.post('php/consulta.php', {datos: apellido}, function(cback){
+					$('.modal-title').html('Enviar mensaje a: '+back+" "+cback);
+				});
+				});
 			});
 
-			$('#btnNoGuardar').on('click', function(){
-				escondeEdits();
-				muestraBtns = !muestraBtns;
-			});
+			$('#btnMandar').on('click', function(){
+				var enviar = {mensaje: $('#mensaje').val(), idUsuario: id, idPrestador: idSender};
 
-			$('#btnGuardar').on('click', function(){
-				$.post('php/guardaData.php', {descripcion: $('#txtDesc').val(), horarios: $('#txtHorarios').val()}, function(callback){
-					window.location = 'perfilWrk.php';
-				})
-			})
+				$.post('php/guardaMensaje.php', enviar, function(cback){
+					console.log(cback);
+				});
 
-			/* codigo obtenido de jsfiddle */
-		    $(":file").change(function () {
-		        if (this.files && this.files[0]) {
-		            var reader = new FileReader();
-		            reader.onload = imageIsLoaded;
-		            reader.readAsDataURL(this.files[0]);
-		        }
-		    });
-			
-
-			function imageIsLoaded(e) {
-				$('.muestraFoto').show();
-			    $('.imgNueva').attr('src', e.target.result);
-			};
-
-			/* fin de codigo recopilado */
-
-			function escondeEdits()
-			{
-				$('.divGN').fadeOut();
-				$('.perfil').hide();
-				$('.pEdits').show();
-			}
+			});	
 
 			function escondeCajaBuscar()
 			{
@@ -241,58 +203,6 @@
 				var cadena = "Buscar profesionistas en " + weather.city + ", " + weather.region + ", " + weather.country;
 				$('.txtBuscar').attr('placeholder', cadena);
 			};
-
-			function cargaDatosUsuario()
-			{
-				$.post('php/obtenerDatos.php', function(callback){
-					var datos = callback.split(",");
-					$('#nombre').html(nombrePr);
-					var pass = {select: 'Profesion', tabla: 'prestadores', where: 'id', valor: id, tipoVal: 'numerico'};
-					$.post('php/consulta.php', {datos: pass} , function(nyes){
-						console.log(nyes);
-						var profesiones = nyes.split(', ');
-						var indice = 0;
-						var profesionesArregladas = [];
-						var alb = "";
-
-						for(indice = 0; indice < profesiones.length ; indice++)
-						{
-							if(profesiones[indice].includes('alb'))
-							{
-								profesionesArregladas.push("alba&ntilde;il");
-							}
-							else
-							{	
-								profesionesArregladas.push(profesiones[indice]);
-							}
-						}
-
-						$('#idProfesion').html(profesionesArregladas.join(", "));
-					});
-					var paraImagen = {select: 'foto', tabla: 'prestadores', where: 'id', valor: id, tipoVal: 'numerico'};
-					$.post('php/consulta.php', {datos: paraImagen}, function(back){
-						console.log(back);
-
-						$('.imgPerfil').attr('src', 'imagenes/'+back);
-					});
-					console.log(datos[3]);
-					
-					var txtDesc = {select: 'descripcion', tabla: datos[3], where: 'id', valor: id, tipoVal: 'numerico'};
-					
-					$.post('php/consulta.php', {datos: txtDesc}, function(cback){
-						$('#txtDesc').html(cback);
-						$('#pDesc').html(cback);
-					});
-
-					var txtHorarios = {select: 'horarios', tabla: datos[3], where: 'id', valor: id, tipoVal: 'numerico'};
-					
-					$.post('php/consulta.php', {datos: txtHorarios}, function(cback){
-						$('#txtHorarios').html(cback);
-						$('#pHorarios').html(cback);
-					});
-				});
-			}
-
 
 
 			function obtenerUsr()
