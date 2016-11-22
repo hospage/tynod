@@ -25,7 +25,7 @@
 		  <div class="modal-content">
 		    <div class="modal-header">
 		      <button type="button" class="close" data-dismiss="modal"><i class = "fa fa-times"></i></button>
-		      <h4 class="modal-title" class = "display-4">Enviar mensaje a </h4>
+		      <h4 class="modal-title" class = "display-4">Enviar</h4>
 		    </div>
 		    <div class="modal-body">
 		    	<textarea class = "form-control" id = "mensaje"></textarea>
@@ -172,7 +172,6 @@
 			var btnShow = false;
 			var muestraBtns = false;
 			var idSender = -1;
-			var activo = -1;
 
 			$(document).ready(function(){
 				checaLocalizacion(cargaCaja);
@@ -220,9 +219,6 @@
 			{
 				var index= 0;
 
-				if(pishi != activo)
-				{
-
 				$('.burritos').html("");
 
 				console.log(pizeroni);
@@ -255,8 +251,8 @@
 						});
 					}
 				}
-			}
-				activo = pishi;
+			
+
 			}
 
 
